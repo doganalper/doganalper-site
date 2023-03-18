@@ -1,0 +1,35 @@
+---
+import Header from 'src/components/Header.vue'
+const TITLE = 'Alper Doğan - Frontend Developer'
+const DESCRIPTION = 'Developer based in İstanbul, Türkiye'
+const URL = 'https://alperdogan.com'
+import 'src/styles/globals.css'
+
+const { pathname } = Astro.url
+---
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>{TITLE}</title>
+		<meta name="description" content={TITLE} />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta content="#18181B" name="theme-color" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@alperdogan" />
+		<meta name="twitter:title" content={TITLE} />
+		<meta name="twitter:description" content={DESCRIPTION} />
+		<meta name="twitter:url" content={URL} />
+		<link rel="canonical" href={URL} />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={TITLE} />
+		<meta property="og:description" content={DESCRIPTION} />
+		<meta property="og:url" content={URL} />
+	</head>
+	<body class="mx-auto max-w-screen-xl bg-zinc-900 text-slate-400 p-6">
+		<Header pathname={pathname} />
+		<main class="space-y-10 mt-10">
+			<slot />
+		</main>
+	</body>
+</html>

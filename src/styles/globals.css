@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.external-link {
+		@apply underline underline-offset-4 hover:text-slate-200 transition-colors duration-300;
+	}
+
+	.section-header {
+		@apply before:content-['𝍇'] before:mr-2 before:text-2xl;
+		@apply text-2xl;
+	}
+
+	.section-body {
+		@apply pl-0 md:pl-7;
+	}
+}
