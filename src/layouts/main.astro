@@ -1,5 +1,6 @@
 ---
 import Header from 'src/components/Header.vue'
+import ThemeButton from 'src/components/ThemeButton.vue'
 const TITLE = 'Alper Doğan - Frontend Developer'
 const DESCRIPTION = 'Developer based in İstanbul, Türkiye'
 const URL = 'https://alperdogan.com'
@@ -25,11 +26,37 @@ const { pathname } = Astro.url
 		<meta property="og:title" content={TITLE} />
 		<meta property="og:description" content={DESCRIPTION} />
 		<meta property="og:url" content={URL} />
+
+		<script is:inline>
+			const theme = (() => {
+				if (
+					typeof localStorage !== 'undefined' &&
+					localStorage.getItem('theme')
+				) {
+					return localStorage.getItem('theme')
+				}
+				if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					return 'dark'
+				}
+				return 'light'
+			})()
+
+			if (theme === 'light') {
+				document.documentElement.classList.add('theme-light')
+				document.documentElement.classList.remove('theme-dark')
+			} else {
+				document.documentElement.classList.remove('theme-light')
+				document.documentElement.classList.add('theme-dark')
+			}
+		</script>
 	</head>
 	<body class="mx-auto max-w-screen-xl bg-zinc-900 text-slate-400 p-6">
-		<Header pathname={pathname} />
+		<Header pathname={pathname}>
+			<ThemeButton client:idle />
+		</Header>
 		<main class="space-y-10 mt-10">
 			<slot />
+			b
 		</main>
 	</body>
 </html>
