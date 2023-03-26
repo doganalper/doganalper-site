@@ -19,7 +19,7 @@ defineProps<{
 			width="16"
 			viewBox="0 0 16 16"
 			xmlns="http://www.w3.org/2000/svg"
-			class="inline fill-[#94A3B8] hover:fill-white"
+			class="inline fill-[#94A3B8] dark:hover:fill-white hover:fill-black"
 		>
 			<g>
 				<path

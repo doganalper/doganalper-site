@@ -4,7 +4,7 @@
 
 @layer components {
 	.external-link {
-		@apply underline underline-offset-4 hover:text-slate-200 transition-colors duration-300;
+		@apply underline underline-offset-4 dark:hover:text-slate-200 hover:text-black transition-colors duration-300 font-semibold;
 	}
 
 	.section-header {

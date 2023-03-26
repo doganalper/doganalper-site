@@ -42,21 +42,20 @@ const { pathname } = Astro.url
 			})()
 
 			if (theme === 'light') {
-				document.documentElement.classList.add('theme-light')
-				document.documentElement.classList.remove('theme-dark')
+				document.documentElement.classList.add('light')
+				document.documentElement.classList.remove('dark')
 			} else {
-				document.documentElement.classList.remove('theme-light')
-				document.documentElement.classList.add('theme-dark')
+				document.documentElement.classList.remove('light')
+				document.documentElement.classList.add('dark')
 			}
 		</script>
 	</head>
-	<body class="mx-auto max-w-screen-xl bg-zinc-900 text-slate-400 p-6">
+	<body class="mx-auto max-w-screen-xl dark:bg-zinc-900 bg-neutral-200 dark:text-slate-400 text-zinc-600 p-6">
 		<Header pathname={pathname}>
 			<ThemeButton client:idle />
 		</Header>
 		<main class="space-y-10 mt-10">
 			<slot />
-			b
 		</main>
 	</body>
 </html>

@@ -21,11 +21,11 @@ export function useTheme() {
 		localStorage.setItem(LOCAL_THEME_NAME, newTheme)
 
 		if (newTheme === 'light') {
-			document.documentElement.classList.add('theme-light')
-			document.documentElement.classList.remove('theme-dark')
+			document.documentElement.classList.add('light')
+			document.documentElement.classList.remove('dark')
 		} else {
-			document.documentElement.classList.remove('theme-light')
-			document.documentElement.classList.add('theme-dark')
+			document.documentElement.classList.remove('light')
+			document.documentElement.classList.add('dark')
 		}
 
 		return newTheme
