@@ -14,6 +14,6 @@ function setTheme() {
 
 <template>
 	<button @click="setTheme">
-		Change Theme
+		{{ theme === 'dark' ? 'Light' : 'Dark' }} Theme
 	</button>
 </template>
