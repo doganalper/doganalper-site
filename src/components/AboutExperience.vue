@@ -27,8 +27,8 @@ const dateStr = `${props.experience.dates[0]} - ${
 			</summary>
 			<span class="pl-2 mt-2">
 				<h4>{{ experience.role }}</h4>
-				<p>{{ experience.companySummary }}</p>
-				<ul class="list-disc pl-10 space-y-1 mt-2">
+				<p class="text-lg">{{ experience.companySummary }}</p>
+				<ul class="list-disc pl-10 space-y-1 mt-2 text-base">
 					<li v-for="sum in experience.roleSummary" :key="sum">
 						{{ sum }}
 					</li>

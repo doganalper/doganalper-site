@@ -1,12 +1,11 @@
 ---
 import Header from 'src/components/Header.vue'
 import ThemeButton from 'src/components/ThemeButton.vue'
-const TITLE = 'Alper Doğan - Frontend Developer'
+const TITLE = 'Alper Doğan'
 const DESCRIPTION = 'Developer based in İstanbul, Türkiye'
-const URL = 'https://alperdogan.com'
 import 'src/styles/globals.css'
 
-const { pathname } = Astro.url
+const { pathname, origin } = Astro.url
 ---
 
 <html lang="en">
@@ -20,13 +19,14 @@ const { pathname } = Astro.url
 		<meta name="twitter:site" content="@alperdogan" />
 		<meta name="twitter:title" content={TITLE} />
 		<meta name="twitter:description" content={DESCRIPTION} />
-		<meta name="twitter:url" content={URL} />
-		<link rel="canonical" href={URL} />
+		<meta name="twitter:url" content={origin} />
+		<link rel="canonical" href={origin} />
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={TITLE} />
 		<meta property="og:description" content={DESCRIPTION} />
-		<meta property="og:url" content={URL} />
-
+		<meta property="og:url" content={origin} />
+		<meta name="robots" content="index, follow">
+		<link rel="manifest" href="/site.webmanifest" />
 		<script is:inline>
 			const theme = (() => {
 				if (
