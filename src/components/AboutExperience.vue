@@ -17,7 +17,7 @@ const dateStr = `${props.experience.dates[0]} - ${
 			<summary class="cursor-pointer">
 				<h3 class="space-x-2 inline">
 					<span class="no-underline">{{ experience.company }}</span>
-					<span>{{ dateStr }}</span>
+					<span class="select-none">{{ dateStr }}</span>
 					<LinkIcon
 						:href="experience.href"
 						nofollow
@@ -34,7 +34,6 @@ const dateStr = `${props.experience.dates[0]} - ${
 					</li>
 				</ul>
 			</span>
-			<!-- TODO: add stack section -->
 		</details>
 	</li>
 </template>
