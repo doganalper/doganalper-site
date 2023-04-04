@@ -3,7 +3,7 @@ import AboutExperiences from 'src/components/AboutExperiences.vue'
 </script>
 
 <template>
-	<section role="presentation" class="space-y-3">
+	<section class="space-y-3">
 		<h2 class="section-header">About Me</h2>
 		<p class="text-lg section-body">
 			I am a frontend developer from Türkiye 🇹🇷.

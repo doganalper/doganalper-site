@@ -3,7 +3,7 @@ import SocialPlatforms from 'src/constants/social'
 </script>
 
 <template>
-	<section role="main">
+	<section>
 		<div class="grid md:grid-cols-12 gap-6 items-center">
 			<div class="md:col-span-6 order-last md:order-first">
 				<slot />
