@@ -9,7 +9,7 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 export default defineConfig({
   integrations: [vue(), tailwind(), image(), mdx()],
-  output: "server",
+  // output: "server",
 	// adapter: vercel({
 	// 	analytics: true
 	// })
