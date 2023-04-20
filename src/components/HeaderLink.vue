@@ -17,8 +17,12 @@ const isActive = to === props.currentPathname
 		<span class="text-xs">(soon)</span>
 	</li>
 	<li role="menuitem" v-else>
-		<a :href="to" :class="{ 'text-black dark:text-slate-200 font-semibold': isActive }">{{
-			route.text
-		}}</a>
+		<a
+			:href="to"
+			:class="{
+				'text-black dark:text-slate-200 font-semibold': isActive,
+			}"
+			>{{ route.text }}</a
+		>
 	</li>
 </template>

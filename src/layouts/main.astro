@@ -25,7 +25,7 @@ const { pathname, origin } = Astro.url
 		<meta property="og:title" content={TITLE} />
 		<meta property="og:description" content={DESCRIPTION} />
 		<meta property="og:url" content={origin} />
-		<meta name="robots" content="index, follow">
+		<meta name="robots" content="index, follow" />
 		<link rel="manifest" href="/site.webmanifest" />
 		<script is:inline>
 			const theme = (() => {
@@ -50,7 +50,9 @@ const { pathname, origin } = Astro.url
 			}
 		</script>
 	</head>
-	<body class="mx-auto max-w-screen-xl dark:bg-zinc-900 bg-neutral-200 dark:text-slate-400 text-zinc-600 p-6">
+	<body
+		class="mx-auto max-w-screen-xl dark:bg-zinc-900 bg-neutral-200 dark:text-slate-400 text-zinc-600 p-6"
+	>
 		<Header pathname={pathname}>
 			<ThemeButton client:idle />
 		</Header>

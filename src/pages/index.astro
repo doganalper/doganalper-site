@@ -2,19 +2,9 @@
 import MainLayout from 'src/layouts/main.astro'
 import About from 'src/components/About.vue'
 import Home from 'src/components/Home.vue'
-import { Image } from '@astrojs/image/components'
 ---
 
 <MainLayout>
-	<Home>
-		<Image
-			src="/me.jpeg"
-			format="jpeg"
-			width={628}
-			height={471}
-			loading="eager"
-			alt="Me with famous Church of Our Lady before Týn in Prague"
-		/>
-	</Home>
+	<Home />
 	<About />
 </MainLayout>
