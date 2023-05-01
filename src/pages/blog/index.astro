@@ -1,7 +1,28 @@
 ---
+import BlogEntrySmall from 'src/components/BlogEntrySmall.vue'
 import MainLayout from 'src/layouts/main.astro'
+import { getCollection } from 'astro:content'
+import type { BlogEntry } from 'src/types/blog'
+
+const currentDate = new Date()
+const blogEntries = await getCollection('blog').then(
+	(entry) =>
+		entry
+			.filter((item) => new Date(item.data.publishDate) <= currentDate)
+			.map((entry) => ({
+				...entry,
+				data: {
+					...entry.data,
+					publishDate: entry.data.publishDate
+						.toISOString()
+						.slice(0, 10) as string,
+				},
+			})) as BlogEntry[],
+)
 ---
 
-<MainLayout>
-	<h1>Blog Page</h1>
+<MainLayout title="Alper's Blog">
+	<div class="space-y-10">
+		{blogEntries.map((blog) => <BlogEntrySmall entry={blog} />)}
+	</div>
 </MainLayout>
