@@ -1,6 +1,7 @@
 ---
 import MainLayout from 'src/layouts/main.astro'
-import { getCollection } from 'astro:content'
+import { CollectionEntry, getCollection } from 'astro:content'
+import BlogPostMetaInfo from 'src/components/BlogPostMetaInfo.vue'
 
 export async function getStaticPaths() {
 	const blogEntries = await getCollection('blog')
@@ -10,10 +11,21 @@ export async function getStaticPaths() {
 	}))
 }
 
-const { entry } = Astro.props
+const { entry } = Astro.props as { entry: CollectionEntry<'blog'> }
 const { Content } = await entry.render()
 ---
 
 <MainLayout>
-	<Content />
+	<article class="space-y-4">
+		<header class="space-y-2">
+			<h1 class="text-3xl text-black dark:text-slate-200 font-semibold">
+				{entry.data.title}
+			</h1>
+			<h2 class="text-xl">{entry.data.description}</h2>
+			<BlogPostMetaInfo entry={entry}/>
+		</header>
+		<section>
+			<Content />
+		</section>
+	</article>
 </MainLayout>
