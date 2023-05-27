@@ -12,7 +12,7 @@ const publishDate = formatDate(props.entry.data.publishDate)
 
 <template>
 	<div class="space-x-2.5 text-sm">
-		<time datetime="{entry.data.publishDate}">
+		<time :datetime="entry.data.publishDate">
 			{{ publishDate }}
 		</time>
 		<span>-</span>
