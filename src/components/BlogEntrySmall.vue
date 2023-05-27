@@ -10,7 +10,7 @@ const link = `/blog/${props.entry.data.tag}/${props.entry.slug}`
 </script>
 
 <template>
-	<a class="flex flex-col space-y-1 hover:px-2 transition-all" :href="link">
+	<a class="flex flex-col space-y-1" :href="link">
 		<h3 class="text-2xl font-semibold text-black dark:text-slate-200">
 			{{ entry.data.title }}
 		</h3>

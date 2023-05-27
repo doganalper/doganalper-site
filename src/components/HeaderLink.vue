@@ -8,7 +8,8 @@ const props = defineProps<Props>()
 
 const to = `${props.route.href}`
 
-const isActive = to === props.currentPathname
+const isBlog =  props.currentPathname.includes('blog') && to.includes('blog')
+const isActive = isBlog ? true : to === props.currentPathname
 </script>
 
 <template>

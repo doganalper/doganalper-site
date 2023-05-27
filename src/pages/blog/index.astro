@@ -22,7 +22,5 @@ const blogEntries = await getCollection('blog').then(
 ---
 
 <MainLayout title="Alper's Blog">
-	<div class="space-y-10">
-		{blogEntries.map((blog) => <BlogEntrySmall entry={blog} />)}
-	</div>
+	{blogEntries.map((blog) => <BlogEntrySmall entry={blog} />)}
 </MainLayout>
