@@ -4,11 +4,12 @@ import MainLayout from 'src/layouts/main.astro'
 import { getCollection } from 'astro:content'
 import type { BlogEntry } from 'src/types/blog'
 
+const isDev = process.env.NODE_ENV === 'development'
 const currentDate = new Date()
 const blogEntries = await getCollection('blog').then(
 	(entry) =>
 		entry
-			.filter((item) => new Date(item.data.publishDate) <= currentDate)
+			.filter((item) => item.data.draft ? isDev : new Date(item.data.publishDate) <= currentDate)
 			.map((entry) => ({
 				...entry,
 				data: {

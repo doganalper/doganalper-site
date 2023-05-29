@@ -8,6 +8,7 @@ const blogCollection = defineCollection({
 		image: z.string().optional(),
 		description: z.string().min(20).max(120),
 		publishDate: z.date(),
+		draft: z.boolean().optional()
 	}),
 })
 

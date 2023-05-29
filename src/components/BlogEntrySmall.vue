@@ -12,7 +12,7 @@ const link = `/blog/${props.entry.data.tag}/${props.entry.slug}`
 <template>
 	<a class="flex flex-col space-y-1" :href="link">
 		<h3 class="text-2xl font-semibold text-black dark:text-slate-200">
-			{{ entry.data.title }}
+			{{ entry.data.title }} {{entry.data.draft && "(DRAFT)"}}
 		</h3>
 		<BlogPostMetaInfo :entry="entry" />
 		<p class="text-md">{{ entry.data.description }}</p>
