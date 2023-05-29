@@ -1,13 +1,14 @@
 type DateConfig = {
-	weekday: boolean
-	day: boolean
+	weekday?: boolean
+	day?: boolean
+	locale?: 'en' | 'tr'
 }
 
 export default function (
 	date: string | number | Date,
 	config?: DateConfig,
 ): string {
-	const { weekday = true, day = true } = config || {}
+	const { weekday = true, day = true, locale = 'en' } = config || {}
 	let parsedDate = new Date(date)
 
 	if (typeof date === 'string') {
@@ -19,7 +20,13 @@ export default function (
 		)
 	}
 
-	return parsedDate.toLocaleString('en-US', {
+	const locales = {
+		en: 'en-US',
+		tr: 'tr-TR',
+	}
+
+	const localeValue = locales[locale] || locales.en
+	return parsedDate.toLocaleString(localeValue, {
 		year: 'numeric',
 		month: 'short',
 		day: day ? 'numeric' : undefined,

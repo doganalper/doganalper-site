@@ -2,13 +2,19 @@
 import MainLayout from 'src/layouts/main.astro'
 import { CollectionEntry, getCollection } from 'astro:content'
 import BlogPostMetaInfo from 'src/components/BlogPostMetaInfo.vue'
+import isAfterToday from 'src/utils/isAfterToday'
+import { isDev } from 'src/utils/isDev'
 
 export async function getStaticPaths() {
 	const blogEntries = await getCollection('blog')
-	return blogEntries.map((entry) => ({
-		params: { slug: entry.slug, tag: entry.data.tag },
-		props: { entry },
-	}))
+	return blogEntries
+		.filter((item) =>
+			item.data.draft ? isDev : isAfterToday(item.data.publishDate),
+		)
+		.map((entry) => ({
+			params: { slug: entry.slug, tag: entry.data.tag },
+			props: { entry },
+		}))
 }
 
 const { entry } = Astro.props as { entry: CollectionEntry<'blog'> }
@@ -16,15 +22,15 @@ const { Content } = await entry.render()
 ---
 
 <MainLayout>
-	<article class="space-y-4">
+	<article class="space-y-5">
 		<header class="space-y-1.5">
 			<h1 class="text-3xl text-black dark:text-slate-200 font-semibold">
 				{entry.data.title}
 			</h1>
-			<h2 class="text-xl">{entry.data.description}</h2>
-			<BlogPostMetaInfo entry={entry}/>
+			<h2 class="text-lg">{entry.data.description}</h2>
+			<BlogPostMetaInfo entry={entry} />
 		</header>
-		<section class="leading-8 text-lg space-y-2">
+		<section class="leading-9 text-xl space-y-2.5 tracking-wide">
 			<Content />
 		</section>
 	</article>

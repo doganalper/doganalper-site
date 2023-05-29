@@ -7,7 +7,10 @@ const props = defineProps<{
 	entry: CollectionEntry<any>
 }>()
 
-const publishDate = formatDate(props.entry.data.publishDate)
+const publishDate = formatDate(props.entry.data.publishDate, {
+	locale: props.entry.data.language || 'en',
+	weekday: false
+})
 </script>
 
 <template>
