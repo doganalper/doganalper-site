@@ -10,5 +10,6 @@ export default <IRouteItem[]>[
 		href: '/blog',
 		text: 'Blog',
 		slug: 'blog',
+		soon: true
 	},
 ]
