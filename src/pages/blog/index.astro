@@ -6,19 +6,10 @@ import type { BlogEntry } from 'src/types/blog'
 import isAfterToday from 'src/utils/isAfterToday'
 import { isDev } from 'src/utils/isDev'
 
-const blogEntries = await getCollection('blog').then(
-	(entry) =>
-		entry
-			.filter((item) => item.data.draft ? isDev : isAfterToday(item.data.publishDate))
-			.map((entry) => ({
-				...entry,
-				data: {
-					...entry.data,
-					publishDate: entry.data.publishDate
-						.toISOString()
-						.slice(0, 10) as string,
-				},
-			})) as BlogEntry[],
+const blogEntries = await getCollection('blog').then((entry) =>
+	entry.filter((item) =>
+		item.data.draft ? isDev : isAfterToday(item.data.publishDate),
+	) as BlogEntry[],
 )
 ---
 
