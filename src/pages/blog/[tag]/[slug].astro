@@ -21,7 +21,7 @@ const { entry } = Astro.props as { entry: CollectionEntry<'blog'> }
 const { Content } = await entry.render()
 ---
 
-<MainLayout>
+<MainLayout title={entry.data.title} >
 	<article class="space-y-5">
 		<header class="space-y-1.5">
 			<h1 class="text-3xl text-black dark:text-slate-200 font-semibold">
