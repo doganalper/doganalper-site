@@ -1,27 +1,23 @@
 ---
 import MainLayout from 'src/layouts/main.astro'
-import { CollectionEntry, getCollection } from 'astro:content'
 import BlogPostMetaInfo from 'src/components/BlogPostMetaInfo.vue'
-import isAfterToday from 'src/utils/isAfterToday'
-import { isDev } from 'src/utils/isDev'
+import { getEntry } from 'astro:content'
 
-export async function getStaticPaths() {
-	const blogEntries = await getCollection('blog')
-	return blogEntries
-		.filter((item) =>
-			item.data.draft ? isDev : isAfterToday(item.data.publishDate),
-		)
-		.map((entry) => ({
-			params: { slug: entry.slug, tag: entry.data.tag },
-			props: { entry },
-		}))
+const { slug } = Astro.params
+if (slug === undefined) {
+	throw new Error('Slug is required')
 }
 
-const { entry } = Astro.props as { entry: CollectionEntry<'blog'> }
+const entry = await getEntry('blog', slug)
+
+if (entry === undefined) {
+	return Astro.redirect('/404')
+}
+
 const { Content } = await entry.render()
 ---
 
-<MainLayout title={entry.data.title} >
+<MainLayout title={entry.data.title}>
 	<article class="space-y-5">
 		<header class="space-y-1.5">
 			<h1 class="text-3xl text-black dark:text-slate-200 font-semibold">
