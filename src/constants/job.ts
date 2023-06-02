@@ -19,7 +19,7 @@ const Job = {
 				'Tailwindcss',
 				'Astro',
 			],
-			dates: ['09/2021'],
+			dates: ['09/2021', '05/2023'],
 		},
 		{
 			company: 'Nerasocial',
