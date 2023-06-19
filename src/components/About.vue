@@ -15,8 +15,7 @@ import AboutExperiences from 'src/components/AboutExperiences.vue'
 			I also like to visit local museums and try new foods from different
 			cultures 🧆. <br />
 			I am currently learning Spanish (Hola, todo 👋🏼) and want to improve
-			my writing skills by writing more on my blog (which is currently
-			under construction 🚧).
+			my writing skills by writing more on my blog.
 		</p>
 		<AboutExperiences />
 	</section>
