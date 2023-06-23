@@ -6,10 +6,16 @@ import type { BlogEntry } from 'src/types/blog'
 import isAfterToday from 'src/utils/isAfterToday'
 import { isDev } from 'src/utils/isDev'
 
-const blogEntries = await getCollection('blog').then((entry) =>
-	entry.filter((item) =>
-		item.data.draft ? isDev : isAfterToday(item.data.publishDate),
-	) as BlogEntry[],
+const blogEntries = await getCollection('blog').then(
+	(entry) =>
+		entry
+			.filter((item) =>
+				item.data.draft ? isDev : isAfterToday(item.data.publishDate),
+			)
+			.sort(
+				(a, b) =>
+					b.data.publishDate.getTime() - a.data.publishDate.getTime(),
+			) as BlogEntry[],
 )
 ---
 
