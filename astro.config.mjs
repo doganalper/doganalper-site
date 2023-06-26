@@ -11,4 +11,5 @@ export default defineConfig({
 	adapter: vercel({
 		analytics: true,
 	}),
+	site: 'https://www.alperdogan.dev/'
 })
