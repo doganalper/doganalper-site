@@ -2,7 +2,7 @@
 defineProps<{
 	href: string
 	text: string
-	isOutLink: boolean
+	isOutLink?: boolean
 }>()
 </script>
 
