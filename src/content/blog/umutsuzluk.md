@@ -3,6 +3,7 @@ title: Umutsuzluk ve İnkar
 tag: life
 description: Bir şey bekleme ve olmaması durumundaki inkar, kabullenme.
 publishDate: 2023-05-29
+draft: true
 language: tr
 ---
 
