@@ -1,9 +1,10 @@
 ---
 import Header from 'src/components/Header.vue'
 import ThemeButton from 'src/components/ThemeButton.vue'
-const DESCRIPTION = 'Developer based in İstanbul, Türkiye'
 import 'src/styles/globals.css'
+import { ViewTransitions } from 'astro:transitions'
 
+const DESCRIPTION = 'Developer based in İstanbul, Türkiye'
 const { pathname, origin } = Astro.url
 const url = `${origin}${pathname}`
 
@@ -29,27 +30,32 @@ const { title = 'Alper Doğan' } = Astro.props
 		<meta property="og:url" content={url} />
 		<meta name="robots" content="index, follow" />
 		<link rel="manifest" href="/site.webmanifest" />
-		<script is:inline>
-			const theme = (() => {
-				if (
-					typeof localStorage !== 'undefined' &&
-					localStorage.getItem('theme')
-				) {
-					return localStorage.getItem('theme')
-				}
-				if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-					return 'dark'
-				}
-				return 'light'
-			})()
+		<ViewTransitions />
+		<script>
+		// this should work after this PR: https://github.com/withastro/astro/pull/7786
+			document.addEventListener('astro:load', () => {
+				console.log('[AA]')
+				const theme = (() => {
+					if (
+						typeof localStorage !== 'undefined' &&
+						localStorage.getItem('theme')
+					) {
+						return localStorage.getItem('theme')
+					}
+					if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+						return 'dark'
+					}
+					return 'light'
+				})()
 
-			if (theme === 'light') {
-				document.documentElement.classList.add('light')
-				document.documentElement.classList.remove('dark')
-			} else {
-				document.documentElement.classList.remove('light')
-				document.documentElement.classList.add('dark')
-			}
+				if (theme === 'light') {
+					document.documentElement.classList.add('light')
+					document.documentElement.classList.remove('dark')
+				} else {
+					document.documentElement.classList.remove('light')
+					document.documentElement.classList.add('dark')
+				}
+			}, {once: true})
 		</script>
 	</head>
 	<body
