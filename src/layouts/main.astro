@@ -31,16 +31,17 @@ const { title = 'Alper Doğan' } = Astro.props
 		<meta name="robots" content="index, follow" />
 		<link rel="manifest" href="/site.webmanifest" />
 		<ViewTransitions />
-		<script>
+		<script is:inline>
 		// this should work after this PR: https://github.com/withastro/astro/pull/7786
-			document.addEventListener('astro:load', () => {
+			document.addEventListener('astro:beforeload', () => {
+			const localTheme = localStorage.getItem("theme")
 				console.log('[AA]')
 				const theme = (() => {
 					if (
 						typeof localStorage !== 'undefined' &&
-						localStorage.getItem('theme')
+					localTheme
 					) {
-						return localStorage.getItem('theme')
+						return localTheme
 					}
 					if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
 						return 'dark'
