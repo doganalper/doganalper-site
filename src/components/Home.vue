@@ -5,7 +5,7 @@ import SocialPlatforms from 'src/constants/social'
 <template>
 	<section>
 		<div class="md:col-span-6 space-y-3">
-			<h1 class="text-4xl text-black dark:text-white">Hello, I'm <strong>Alper</strong></h1>
+			<h1 class="text-4xl">Hello, I'm <strong>Alper</strong></h1>
 			<p class="text-lg">
 				Frontend Developer, based in 📍İstanbul, Türkiye
 			</p>
