@@ -7,13 +7,13 @@ const props = defineProps<{
 }>()
 
 const link = `/blog/${props.entry.data.tag}/${props.entry.slug}`
-const languageText = `[${props.entry.data.language}] `
+// const languageText = `[${props.entry.data.language}] `
 </script>
 
 <template>
 	<a class="flex flex-col space-y-1" :href="link">
 		<h3 class="text-2xl font-semibold text-black">
-			{{ languageText }}{{ entry.data.title }}
+			{{ entry.data.title }}
 			{{ entry.data.draft && '(DRAFT)' }}
 		</h3>
 		<BlogPostMetaInfo :entry="entry" />
