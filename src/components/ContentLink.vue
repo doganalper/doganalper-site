@@ -10,7 +10,7 @@ defineProps<{
 	<a
 		:href="href"
 		:target="isOutLink ? '_blank' : '_self'"
-		class="underline underline-offset-1 dark:hover:text-white hover:text-black"
+		class="underline underline-offset-1 hover:text-black"
 	>
 		{{ text }}
 	</a>

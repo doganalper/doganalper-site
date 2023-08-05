@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-	<header class="flex justify-between">
+	<header>
 		<nav role="navigation">
 			<ul role="menu" class="flex space-x-6">
 				<HeaderLink
@@ -18,6 +18,5 @@ defineProps<{
 				/>
 			</ul>
 		</nav>
-		<div><slot /></div>
 	</header>
 </template>

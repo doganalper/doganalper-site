@@ -7,11 +7,8 @@ import SocialPlatforms from 'src/constants/social'
 		<div class="md:col-span-6 space-y-3">
 			<h1 class="text-4xl">
 				Hello, I'm
-				<strong class="text-black dark:text-white">Alper</strong>
+				<strong class="text-black">Alper</strong>
 			</h1>
-			<p class="text-lg">
-				Frontend Developer, based in 📍İstanbul, Türkiye
-			</p>
 			<div class="flex space-x-2">
 				<a
 					v-for="platform in SocialPlatforms"
