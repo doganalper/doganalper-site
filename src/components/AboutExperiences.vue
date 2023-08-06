@@ -6,7 +6,7 @@ import AboutExperience from 'src/components/AboutExperience.vue'
 <template>
 	<section class="space-y-3">
 		<h2 class="section-header">Experiences</h2>
-		<ul class="space-y-3 section-body">
+		<ul class="space-y-3">
 			<AboutExperience
 				v-for="experience in Job.previous"
 				:key="experience.company"

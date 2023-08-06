@@ -15,10 +15,11 @@ const dateStr = `${props.experience.dates[0]} - ${
 	<li class="space-y-1 text-xl">
 		<details class="flex space-x-3" :open="!experience.dates[1]">
 			<summary class="cursor-pointer">
-				<h3 class="space-x-2 inline">
+				<h3 class="space-x-2 inline-flex items-center">
 					<span class="no-underline">{{ experience.company }}</span>
 					<span class="select-none">{{ dateStr }}</span>
 					<LinkIcon
+						class="-mt-2"
 						:href="experience.href"
 						nofollow
 						:name="experience.company"

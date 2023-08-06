@@ -1,21 +1,17 @@
 <script setup lang="ts">
 import AboutExperiences from 'src/components/AboutExperiences.vue'
+
+const yearCount = new Date().getFullYear() - 2021 + 1
 </script>
 
 <template>
-	<section class="space-y-3">
-		<h2 class="section-header">About Me</h2>
-		<p class="text-lg section-body">
-			I am a frontend developer from Türkiye 🇹🇷.
+	<section class="space-y-5">
+		<p class="text-lg">
+			Frontend Developer, based in 📍İstanbul, Türkiye
 			<br />
-			Most of my hobbies are centered around staying inside, such as
-			reading non-fiction novels, philosophy and technology and playing
-			video games 🕹️.
-			<br />
-			I also like to visit local museums and try new foods from different
-			cultures 🧆. <br />
-			I am currently learning Spanish (Hola, todo 👋🏼) and want to improve
-			my writing skills by writing more on my blog.
+			I have {{ yearCount }} years experience using mostly Vuejs and it's
+			ecosystem. I like building CLI applications for my personal use and
+			currently learning how to develop plugins for neovim.
 		</p>
 		<AboutExperiences />
 	</section>

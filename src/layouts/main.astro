@@ -1,6 +1,5 @@
 ---
 import Header from 'src/components/Header.vue'
-import ThemeButton from 'src/components/ThemeButton.vue'
 const DESCRIPTION = 'Developer based in İstanbul, Türkiye'
 import 'src/styles/globals.css'
 
@@ -29,36 +28,10 @@ const { title = 'Alper Doğan' } = Astro.props
 		<meta property="og:url" content={url} />
 		<meta name="robots" content="index, follow" />
 		<link rel="manifest" href="/site.webmanifest" />
-		<script is:inline>
-			const theme = (() => {
-				if (
-					typeof localStorage !== 'undefined' &&
-					localStorage.getItem('theme')
-				) {
-					return localStorage.getItem('theme')
-				}
-				if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-					return 'dark'
-				}
-				return 'light'
-			})()
-
-			if (theme === 'light') {
-				document.documentElement.classList.add('light')
-				document.documentElement.classList.remove('dark')
-			} else {
-				document.documentElement.classList.remove('light')
-				document.documentElement.classList.add('dark')
-			}
-		</script>
 	</head>
-	<body
-		class="mx-auto max-w-screen-xl dark:bg-neutral-800 bg-neutral-200 dark:text-slate-400 text-zinc-600 p-6"
-	>
-		<Header pathname={pathname}>
-			<ThemeButton client:idle />
-		</Header>
-		<main class="space-y-10 mt-10">
+	<body class="mx-auto max-w-screen-xl p-6 bg-neutral-100 text-zinc-900">
+		<Header pathname={pathname} />
+		<main class="space-y-5 mt-10">
 			<slot />
 		</main>
 	</body>
