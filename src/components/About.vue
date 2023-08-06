@@ -5,7 +5,7 @@ const yearCount = new Date().getFullYear() - 2021 + 1
 </script>
 
 <template>
-	<section class="space-y-3">
+	<section class="space-y-5">
 		<p class="text-lg">
 			Frontend Developer, based in 📍İstanbul, Türkiye
 			<br />
