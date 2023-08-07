@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from 'astro:transitions'
+
 import Header from 'src/components/Header.vue'
 const DESCRIPTION = 'Developer based in İstanbul, Türkiye'
 import 'src/styles/globals.css'
@@ -27,6 +29,7 @@ const { title = 'Alper Doğan' } = Astro.props
 		<meta property="og:description" content={DESCRIPTION} />
 		<meta property="og:url" content={url} />
 		<meta name="robots" content="index, follow" />
+		<ViewTransitions />
 		<link rel="manifest" href="/site.webmanifest" />
 	</head>
 	<body class="mx-auto max-w-screen-xl p-6 bg-neutral-100 text-zinc-900">

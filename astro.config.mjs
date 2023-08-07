@@ -11,5 +11,8 @@ export default defineConfig({
 	adapter: vercel({
 		analytics: true,
 	}),
+	experimental: {
+		viewTransitions: true
+	},
 	site: 'https://www.alperdogan.dev/'
 })
