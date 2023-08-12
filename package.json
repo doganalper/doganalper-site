@@ -17,10 +17,13 @@
 		"@astrojs/vercel": "^3.8.0",
 		"@astrojs/vue": "^2.2.1",
 		"astro": "^2.10.1",
+		"satori": "^0.10.3",
+		"sharp": "^0.32.4",
 		"tailwindcss": "^3.3.3",
 		"vue": "^3.3.4"
 	},
 	"devDependencies": {
+		"@types/node": "^20.4.10",
 		"prettier": "^3.0.1",
 		"prettier-plugin-astro": "^0.11.0"
 	}

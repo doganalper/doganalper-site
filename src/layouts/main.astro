@@ -30,6 +30,7 @@ const { title = 'Alper Doğan', description = DESCRIPTION } = Astro.props
 		<meta property="og:url" content={url} />
 		<meta name="robots" content="index, follow" />
 		<meta name="keywords" content="learning, education, tutorial, web development, nuxtjs, vuejs"/>
+		<slot name="og-tags" />
 		<ViewTransitions />
 		<link rel="manifest" href="/site.webmanifest" />
 	</head>
