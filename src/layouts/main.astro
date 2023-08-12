@@ -8,27 +8,28 @@ import 'src/styles/globals.css'
 const { pathname, origin } = Astro.url
 const url = `${origin}${pathname}`
 
-const { title = 'Alper Doğan' } = Astro.props
+const { title = 'Alper Doğan', description = DESCRIPTION } = Astro.props
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<title>{title}</title>
-		<meta name="description" content={title} />
+		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta content="#18181B" name="theme-color" />
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:site" content="@alperdogan" />
 		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={DESCRIPTION} />
+		<meta name="twitter:description" content={description} />
 		<meta name="twitter:url" content={url} />
 		<link rel="canonical" href={url} />
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={title} />
-		<meta property="og:description" content={DESCRIPTION} />
+		<meta property="og:description" content={description} />
 		<meta property="og:url" content={url} />
 		<meta name="robots" content="index, follow" />
+		<meta name="keywords" content="learning, education, tutorial, web development, nuxtjs, vuejs"/>
 		<ViewTransitions />
 		<link rel="manifest" href="/site.webmanifest" />
 	</head>
