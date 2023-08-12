@@ -1,26 +1,14 @@
-// https://arne.me/writing/static-og-images-in-astro/
-
 import fs from 'fs/promises'
 import satori from 'satori'
 import sharp from 'sharp'
-import type { APIRoute } from 'astro'
-import { getCollection } from 'astro:content'
 
-export const prerender = true;
+const font = fs.readFile('./public/RobotoMono-Regular.ttf')
 
-export async function getStaticPaths() {
-	const posts = await getCollection('blog')
-
-	return posts.map((post) => ({
-		params: {
-			slug: post.slug,
-		},
-		props: post,
-	}))
-}
-
-export const get: APIRoute = async function get() {
-	const font = await fs.readFile('./public/RobotoMono-Regular.ttf')
+export default async function renderOgImage(
+	title: string,
+	description: string,
+) {
+	const fontData = await font
 
 	const svg = await satori(
 		{
