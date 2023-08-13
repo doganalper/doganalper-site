@@ -1,7 +1,16 @@
 ---
 import MainLayout from 'src/layouts/main.astro'
 import BlogPostMetaInfo from 'src/components/BlogPostMetaInfo.vue'
-import { getEntry } from 'astro:content'
+import { getCollection, getEntry } from 'astro:content'
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog')
+
+	return posts.map((page) => ({
+		params: { slug: page.slug, tag: page.data.tag },
+		props: page,
+	}))
+}
 
 const { slug } = Astro.params
 if (slug === undefined) {
@@ -17,9 +26,12 @@ if (entry === undefined) {
 const { Content } = await entry.render()
 
 const title = `${entry.data.title} | Alper Doğan`
+const imagePath = `/${entry.data.tag}/${entry.slug}/og-image.png`
 ---
 
 <MainLayout title={title} description={entry.data.description}>
+	<meta property="og:image" content={imagePath} slot="og-tags" />
+	<meta property="twitter:image" content={imagePath} slot="og-tags" />
 	<article class="space-y-5">
 		<header class="space-y-1.5">
 			<h1 class="text-3xl text-black font-semibold">

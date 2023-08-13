@@ -7,12 +7,12 @@ import vercel from '@astrojs/vercel/serverless'
 // https://astro.build/config
 export default defineConfig({
 	integrations: [vue(), tailwind(), mdx()],
-	output: 'server',
+	output: 'hybrid',
 	adapter: vercel({
 		analytics: true,
 	}),
 	experimental: {
-		viewTransitions: true
+		viewTransitions: true,
 	},
-	site: 'https://www.alperdogan.dev/'
+	site: 'https://www.alperdogan.dev/',
 })

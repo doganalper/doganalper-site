@@ -1,0 +1,18 @@
+import type { APIRoute } from 'astro'
+import { getCollection, getEntryBySlug } from 'astro:content'
+import renderOgImage from 'src/utils/renderOgImage'
+
+type Slugs = Awaited<ReturnType<typeof getCollection>>[0]['slug']
+export async function getStaticPaths() {
+	const posts = await getCollection('blog')
+
+	return posts.map((page) => ({
+		params: { slug: page.slug, tag: page.data.tag },
+		props: page,
+	}))
+}
+
+export const get: APIRoute = async function get({ params }) {
+	const page = await getEntryBySlug('blog', params.slug as Slugs)
+	return renderOgImage(page?.data.title, page.data.description)
+}
