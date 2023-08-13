@@ -8,7 +8,7 @@ import 'src/styles/globals.css'
 const { pathname, origin } = Astro.url
 const url = `${origin}${pathname}`
 
-const { title = 'Alper Doğan', description = DESCRIPTION, imagePath } = Astro.props
+const { title = 'Alper Doğan', description = DESCRIPTION, imagePath, isArticle = false } = Astro.props
 ---
 
 <html lang="en">
@@ -24,7 +24,7 @@ const { title = 'Alper Doğan', description = DESCRIPTION, imagePath } = Astro.p
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:url" content={url} />
 		<link rel="canonical" href={url} />
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content={isArticle ? "article" : "website"} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={url} />
