@@ -26,7 +26,7 @@ if (entry === undefined) {
 const { Content } = await entry.render()
 
 const title = `${entry.data.title} | Alper Doğan`
-const imagePath = `${entry.data.tag}/${entry.slug}/og-image.png`
+const imagePath = `/og-image.png`
 ---
 
 <MainLayout title={title} description={entry.data.description} imagePath={imagePath}>
