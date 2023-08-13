@@ -52,7 +52,7 @@ export default async function renderOgImage(
 											fontSize: 36,
 											fontWeight: 600,
 										},
-										children: 'Hello, World!',
+										children: title,
 									},
 								},
 								{
@@ -64,7 +64,7 @@ export default async function renderOgImage(
 											color: '#71717a',
 											maxWidth: '70%',
 										},
-										children: 'Mock description',
+										children: description,
 									},
 								},
 							],
