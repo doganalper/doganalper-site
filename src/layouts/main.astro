@@ -30,12 +30,10 @@ console.log('[imagePath]:', imagePath)
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={url} />
-		{imagePath ? (
-			<>
-				<meta property="twitter:image" content={`${url}${imagePath}`} slot="og-tags" />
-				<meta property="og:image" content={`${url}${imagePath}`} slot="og-tags" />
-			</>
-			) : null}
+		{imagePath && (
+			<meta property="twitter:image" content={`${url}${imagePath}`} slot="og-tags" />
+			<meta property="og:image" content={`${url}${imagePath}`} slot="og-tags" />
+		)}
 		<meta name="robots" content="index, follow" />
 		<meta name="keywords" content="learning, education, tutorial, web development, nuxtjs, vuejs"/>
 		<ViewTransitions />
@@ -43,7 +41,6 @@ console.log('[imagePath]:', imagePath)
 	</head>
 	<body class="mx-auto max-w-screen-xl p-6 bg-neutral-100 text-zinc-900">
 		<Header pathname={pathname} />
-		{imagePath && <span>{imagePath}</span>}
 		<main class="space-y-5 mt-10">
 			<slot />
 		</main>
