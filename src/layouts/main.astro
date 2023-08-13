@@ -8,7 +8,9 @@ import 'src/styles/globals.css'
 const { pathname, origin } = Astro.url
 const url = `${origin}${pathname}`
 
-const { title = 'Alper Doğan', description = DESCRIPTION } = Astro.props
+const { title = 'Alper Doğan', description = DESCRIPTION, imagePath } = Astro.props
+
+console.log('[imagePath]:', imagePath)
 ---
 
 <html lang="en">
@@ -28,14 +30,20 @@ const { title = 'Alper Doğan', description = DESCRIPTION } = Astro.props
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={url} />
+		{imagePath ? (
+			<>
+				<meta property="twitter:image" content={`${url}${imagePath}`} slot="og-tags" />
+				<meta property="og:image" content={`${url}${imagePath}`} slot="og-tags" />
+			</>
+			) : null}
 		<meta name="robots" content="index, follow" />
 		<meta name="keywords" content="learning, education, tutorial, web development, nuxtjs, vuejs"/>
-		<slot name="og-tags" />
 		<ViewTransitions />
 		<link rel="manifest" href="/site.webmanifest" />
 	</head>
 	<body class="mx-auto max-w-screen-xl p-6 bg-neutral-100 text-zinc-900">
 		<Header pathname={pathname} />
+		{imagePath && <span>{imagePath}</span>}
 		<main class="space-y-5 mt-10">
 			<slot />
 		</main>
