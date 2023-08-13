@@ -12,7 +12,7 @@ export default defineConfig({
 		analytics: true,
 	}),
 	experimental: {
-		viewTransitions: true
+		viewTransitions: true,
 	},
-	site: 'https://www.alperdogan.dev/'
+	site: 'https://www.alperdogan.dev/',
 })
