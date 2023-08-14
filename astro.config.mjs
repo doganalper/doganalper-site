@@ -3,10 +3,11 @@ import vue from '@astrojs/vue'
 import tailwind from '@astrojs/tailwind'
 import mdx from '@astrojs/mdx'
 import vercel from '@astrojs/vercel/serverless'
+import sitemap from '@astrojs/sitemap'
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [vue(), tailwind(), mdx()],
+	integrations: [vue(), tailwind(), mdx(), sitemap()],
 	output: 'hybrid',
 	adapter: vercel({
 		analytics: true,
