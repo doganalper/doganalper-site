@@ -1,29 +1,29 @@
 <script lang="ts" setup>
 import type { CollectionEntry } from 'astro:content'
-import capitalizeString from 'src/utils/capitalizeString'
 import formatDate from 'src/utils/formatDate'
 import { computed } from 'vue'
 
 const props = defineProps<{
 	entry: CollectionEntry<'blog'>
+	readingTime?: string
 }>()
 
 const publishDate = formatDate(props.entry.data.publishDate, {
 	locale: props.entry.data.language || 'en',
-	weekday: false
+	weekday: false,
 })
 
 const tags = {
 	tr: {
-		'development': "Yazılım",
-		'travel': "Gezi",
-		'life': 'Hayat'
+		development: 'Yazılım',
+		travel: 'Gezi',
+		life: 'Hayat',
 	},
 	en: {
-		'development': "Development",
-		'travel': "Travel",
-		'life': 'Life'
-	}
+		development: 'Development',
+		travel: 'Travel',
+		life: 'Life',
+	},
 }
 
 const tag = computed(() => {
@@ -41,6 +41,8 @@ const time = computed(() => {
 			{{ publishDate }}
 		</time>
 		<span>-</span>
-		<span>{{tag}}</span>
+		<span>{{ tag }}</span>
+		<span v-if="readingTime">-</span>
+		<span v-if="readingTime">{{ readingTime }}</span>
 	</div>
 </template>
