@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+	font-family: 'Poppins';
+	src: url('/fonts/Poppins-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+* {
+	font-family: "Poppins" !important;
+}
+
 .astro-code {
 	background: inherit !important;
 	padding: 8px !important;

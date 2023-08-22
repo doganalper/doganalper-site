@@ -2,7 +2,7 @@ import fs from 'fs/promises'
 import satori from 'satori'
 import sharp from 'sharp'
 
-const font = fs.readFile('./public/RobotoMono-Regular.ttf')
+const font = fs.readFile('./public/fonts/RobotoMono-Regular.ttf')
 
 export default async function renderOgImage(
 	title: string,
