@@ -21,7 +21,6 @@ const dateStr = `${props.experience.dates[0]} - ${
 					<LinkIcon
 						class="-mt-2"
 						:href="experience.href"
-						nofollow
 						:name="experience.company"
 					/>
 				</h3>
