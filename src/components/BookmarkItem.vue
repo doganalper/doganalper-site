@@ -11,7 +11,9 @@ defineProps<{
 	<div
 		class="text-lg space-y-0.5 text-gray-600 hover:text-inherit transition-colors"
 	>
-		<a :href="bookmark.link" target="_blank">{{ bookmark.title }}</a>
+		<a :href="bookmark.link" target="_blank" class="line-clamp-2" :title="bookmark.title">
+			{{ bookmark.title }}
+		</a>
 		<div class="flex flex-wrap gap-2 text-xs">
 			<div
 				v-for="tag in bookmark.tags"
