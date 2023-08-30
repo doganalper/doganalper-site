@@ -30,7 +30,7 @@ onMounted(() => {
 
 <template>
 	<section>
-		<div class="md:col-span-6 space-y-3">
+		<div class="md:col-span-6 space-y-1.5">
 			<h1 class="text-4xl">
 				Hello, I am
 				<strong class="text-black">{{ text }}</strong>

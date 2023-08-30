@@ -2,9 +2,20 @@
 import MainLayout from 'src/layouts/main.astro'
 import About from 'src/components/About.vue'
 import Home from 'src/components/Home.vue'
+import HomeBookmarksSection from 'src/components/HomeBookmarksSection.vue';
+import getRaindropBookmarks from 'src/utils/raindrop';
+
+const bookmarks = await getRaindropBookmarks({
+	perPage: 5
+})
 ---
 
 <MainLayout>
-	<Home client:load/>
-	<About />
+	<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+		<div class="col-span-3 space-y-4">
+			<Home client:load/>
+			<About />
+		</div>
+		<HomeBookmarksSection bookmarks={bookmarks.items} />
+	</div>
 </MainLayout>

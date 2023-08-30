@@ -21,7 +21,8 @@ const isActive = isBlog ? true : to === props.currentPathname
 		<a
 			:href="to"
 			:class="{
-				'text-black font-semibold': isActive,
+				'text-black font-semibold underline underline-offset-2': isActive,
+				'text-zinc-600': !isActive
 			}"
 			>{{ route.text }}</a
 		>
