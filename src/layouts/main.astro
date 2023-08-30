@@ -37,6 +37,13 @@ const { title = 'Alper Doğan', description = DESCRIPTION, imagePath, isArticle 
 		<ViewTransitions />
 		<link rel="manifest" href="/site.webmanifest" />
 		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link
+			rel="preload"
+			href="/fonts/Poppins-Regular.ttf"
+			as="font"
+			type="font/ttf"
+			crossorigin
+		/>
 	</head>
 	<body class="mx-auto max-w-screen-xl p-6 bg-neutral-100 text-zinc-900">
 		<Header pathname={pathname} />
