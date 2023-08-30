@@ -49,6 +49,7 @@ export default async function renderOgImage(
 									style: 'div',
 									props: {
 										style: {
+											maxWidth: '50%',
 											fontSize: 36,
 											fontWeight: 600,
 										},
