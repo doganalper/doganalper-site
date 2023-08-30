@@ -38,7 +38,7 @@ const imagePath = `og-image.png`
 			<h2 class="text-xl">{entry.data.description}</h2>
 			<BlogPostMetaInfo entry={entry} readingTime={remarkPluginFrontmatter.minutesRead}/>
 		</header>
-		<section class="leading-8 text-lg space-y-2.5 tracking-wide">
+		<section class="prose leading-8 text-lg space-y-2 tracking-wide max-w-none">
 			<Content />
 		</section>
 	</article>

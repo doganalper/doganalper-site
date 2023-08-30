@@ -1,0 +1,172 @@
+---
+title: How to generate Open Graph (OG) images with Satori and Astro
+tag: development
+description: Using Vercel's Satori library with Astro's endpoints to generate OG image to display when link is shared.
+publishDate: 2023-08-30
+language: en
+---
+import ContentLink from 'src/components/ContentLink.vue'
+import CodeBlock from 'src/components/BlogCodeBlock.vue'
+
+First things first, I am lazy. Lazy to create an image for my blog posts. So like any other developer, what I did was spend more time to automate generating images for blog posts instead of creating it by hand, which probably would take less time. Today, I will tell you how I did it using <ContentLink href="https://github.com/vercel/satori" text="Vercel's Satori" isOutLink /> and <ContentLink href="https://docs.astro.build/en/core-concepts/endpoints/" text="Astro's endpoints" isOutLink />.
+
+### Firstly What Are Endpoints?
+
+Anything that has an extension of `.js` or `.ts` under `/pages` folder counts as endpoint. They are great way to serve any kind of data such as XML for things like RSS document or a JSON file. They can also be used as an API endpoint where you can execute code on server at runtime.
+
+We will be using endpoints to run Satori on server when request is sent to relevant URL of blog post.
+
+### And What About Satori?
+
+According to Vercel, Satori is `Enlightened library to convert HTML and CSS to SVG.`. Basically with it you can create a SVG image using HTML and CSS. It also supports JSX syntax, so if you are familiar with it, your job will be easier to use Satori.
+
+### So How Do We Use Them Together?
+
+Firstly we have to create a file with `.{ts|js}` extension under `/pages` folder. This will be our starting point that we call Satori to generate images based on information we pass.
+
+If you are using <ContentLink href="https://docs.astro.build/en/core-concepts/routing/#dynamic-routes" text="dynamic routes" isOuterLink /> you have to use `getStaticPaths` to generate paths that will create image for each path.
+
+<CodeBlock client:idle>
+```ts
+import type { APIRoute } from 'astro'
+import { getCollection, getEntryBySlug } from 'astro:content'
+import renderOgImage from 'src/utils/renderOgImage'
+
+type Slugs = Awaited<ReturnType<typeof getCollection>>[0]['slug']
+export async function getStaticPaths() {
+	const posts = await getCollection('blog')
+
+	return posts.map((page) => ({
+		params: { slug: page.slug, tag: page.data.tag },
+		props: page,
+	}))
+}
+
+export const get: APIRoute = async function get({ params }) {
+	const page = await getEntryBySlug('blog', params.slug as Slugs)
+	return renderOgImage(page?.data.title, page.data.description)
+}
+```
+</CodeBlock>
+
+Here we first generate route for every blog content by using <ContentLink href="https://docs.astro.build/en/guides/content-collections/" text="content collection" isOuterLink /> and whenever someone sends `GET` request to this route, we select collection entry using slug and sending information about it to the function that will generate OG image.
+
+### Generating with Satori
+
+To start generating images with dynamic content, we firstly need a prototype of the image. This will be blueprint of the image, how it will look, where to place things etc. There is a <ContentLink href="https://og-playground.vercel.app/" text="playground" isOuterLink /> that Vercel provides to create the blueprint that I mentioned. Here you can create it using HTML, CSS, JSX and see the preview of it. You can add fonts, use <ContentLink href="https://tailwindcss.com/" text="Tailwind" isOuterLink /> (it is experimental as I am writing this).
+
+
+After creating a blueprint you can take you HTML code and use it within your function that will generate your image.
+
+<CodeBlock client:idle>
+```ts
+import fs from 'fs/promises'
+import satori from 'satori'
+import sharp from 'sharp'
+
+const font = fs.readFile('./public/RobotoMono-Regular.ttf')
+
+export default async function renderOgImage(
+	title: string,
+	description: string,
+) {
+	const fontData = await font
+
+	const svg = await satori(
+		{
+			type: 'div',
+			props: {
+				style: {
+					height: '100%',
+					width: '100%',
+					display: 'flex',
+					flexDirection: 'row',
+					alignItems: 'center',
+					backgroundColor: '#f5f5f5',
+					paddingLeft: '20px',
+				},
+				children: [
+					{
+						style: 'div',
+						props: {
+							style: {
+								height: '100%',
+								width: '2px',
+								backgroundColor: 'black',
+							},
+						},
+					},
+					{
+						style: 'div',
+						props: {
+							style: {
+								display: 'flex',
+								flexDirection: 'column',
+								flex: 1,
+								justifyContent: 'center',
+								marginLeft: '7%',
+							},
+							children: [
+								{
+									style: 'div',
+									props: {
+										style: {
+											fontSize: 36,
+											fontWeight: 600,
+										},
+										children: title,
+									},
+								},
+								{
+									style: 'div',
+									props: {
+										style: {
+											fontSize: 24,
+											fontWeight: 500,
+											color: '#71717a',
+											maxWidth: '70%',
+										},
+										children: description,
+									},
+								},
+							],
+						},
+					},
+				],
+			},
+		},
+		{
+			width: 1200,
+			height: 630,
+			fonts: [
+				{
+					name: 'Roboto',
+					data: fontData,
+					weight: 400,
+					style: 'normal',
+				},
+			],
+		},
+	)
+
+	const png = await sharp(Buffer.from(svg)).png().toBuffer()
+
+	return new Response(png, {
+		headers: {
+			'Content-Type': 'image/png',
+		},
+	})
+}
+```
+</CodeBlock>
+
+So what does this code do? It firstly imports what we need in order to use this function. Secondly it imports a `.ttf` file to use as custom font on generated image. Function itself takes two arguments, first is title of the blog post and second is the description. Later we wait font to load to use it later inside satori's configuration object.
+
+To create an image we firstly pass how our image should like. Second is configuration object of the SVG image that will be rendered. Here we define fix width and height and passing the information about what font we will use in image.
+
+Next, we use <ContentLink href="https://www.npmjs.com/package/sharp" text="sharp" isOuterLink /> to create PNG image from generated SVG. Sharp is image processing library for Node.js.
+
+Lastly, since this function will be only used in API route we can return API response that we will serve when related API route get request.
+
+Generated image will be like this for me, I know it is not pretty but I'm not a designer or something 😄
+<img src="/images/OG-image-example.png" width="800" class="mx-auto" />
