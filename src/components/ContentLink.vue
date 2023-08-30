@@ -2,14 +2,14 @@
 defineProps<{
 	href: string
 	text: string
-	isOutLink?: boolean
+	isOuterLink?: boolean
 }>()
 </script>
 
 <template>
 	<a
 		:href="href"
-		:target="isOutLink ? '_blank' : '_self'"
+		:target="isOuterLink ? '_blank' : '_self'"
 		class="underline underline-offset-1 hover:text-black"
 	>
 		{{ text }}
