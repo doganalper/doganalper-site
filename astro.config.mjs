@@ -9,12 +9,6 @@ import { remarkReadingTime } from './reading-time.mjs'
 // https://astro.build/config
 export default defineConfig({
 	integrations: [vue(), tailwind(), mdx(), sitemap()],
-	redirects: {
-		'/bookmarks': {
-			status: 301,
-			destination: "/bookmarks/1"
-		}
-	},
 	markdown: {
 		remarkPlugins: [remarkReadingTime],
 	},
