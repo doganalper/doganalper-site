@@ -10,7 +10,7 @@ import CodeBlock from 'src/components/BlogCodeBlock.vue'
 
 First things first, I am lazy. Lazy to create an image for my blog posts. So like any other developer, what I did was spend more time to automate generating images for blog posts instead of creating it by hand, which probably would take less time. Today, I will tell you how I did it using <ContentLink href="https://github.com/vercel/satori" text="Vercel's Satori" isOutLink /> and <ContentLink href="https://docs.astro.build/en/core-concepts/endpoints/" text="Astro's endpoints" isOutLink />.
 
-### Firstly What Is Endpoints?
+### Firstly What Are Endpoints?
 
 Anything that has an extension of `.js` or `.ts` under `/pages` folder counts as endpoint. They are great way to serve any kind of data such as XML for things like RSS document or a JSON file. They can also be used as an API endpoint where you can execute code on server at runtime.
 
@@ -26,7 +26,7 @@ Firstly we have to create a file with `.{ts|js}` extension under `/pages` folder
 
 If you are using <ContentLink href="https://docs.astro.build/en/core-concepts/routing/#dynamic-routes" text="dynamic routes" isOuterLink /> you have to use `getStaticPaths` to generate paths that will create image for each path.
 
-<CodeBlock>
+<CodeBlock client:idle>
 ```ts
 import type { APIRoute } from 'astro'
 import { getCollection, getEntryBySlug } from 'astro:content'
@@ -58,7 +58,7 @@ To start generating images with dynamic content, we firstly need a prototype of 
 
 After creating a blueprint you can take you HTML code and use it within your function that will generate your image.
 
-<CodeBlock>
+<CodeBlock client:idle>
 ```ts
 import fs from 'fs/promises'
 import satori from 'satori'
