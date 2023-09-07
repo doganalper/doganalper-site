@@ -15,9 +15,7 @@
 }
 
 .astro-code {
-	background: inherit !important;
-	padding: 8px !important;
-	font-size: inherit;
+	padding: 12px !important;
 }
 
 .astro-code * {

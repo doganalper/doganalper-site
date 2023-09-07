@@ -1,0 +1,15 @@
+---
+import { Code } from 'astro:components'
+const codeSlot = await Astro.slots.render('default')
+
+const {code} = Astro.props as {
+	code: string
+}
+---
+
+<div
+	class="relative group bg-gray-800 text-sm"
+>
+	<Code code={code} lang="ts" wrap theme="nord"/>
+</div>
+
