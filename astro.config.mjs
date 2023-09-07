@@ -1,5 +1,4 @@
 import { defineConfig } from 'astro/config'
-import vue from '@astrojs/vue'
 import tailwind from '@astrojs/tailwind'
 import mdx from '@astrojs/mdx'
 import vercel from '@astrojs/vercel/serverless'
@@ -8,9 +7,14 @@ import { remarkReadingTime } from './reading-time.mjs'
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [vue(), tailwind(), mdx(), sitemap()],
+	integrations: [tailwind(), mdx(), sitemap()],
 	markdown: {
 		remarkPlugins: [remarkReadingTime],
+		shikiConfig: {
+			theme: 'nord',
+			langs: ['ts', 'js', 'astro'],
+			wrap: true,
+		},
 	},
 	output: 'hybrid',
 	adapter: vercel({

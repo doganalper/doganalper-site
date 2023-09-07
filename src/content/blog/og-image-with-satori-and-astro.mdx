@@ -5,8 +5,8 @@ description: Using Vercel's Satori library with Astro's endpoints to generate OG
 publishDate: 2023-08-30
 language: en
 ---
-import ContentLink from 'src/components/ContentLink.vue'
-import CodeBlock from 'src/components/BlogCodeBlock.vue'
+import ContentLink from 'src/components/ContentLink.astro'
+import CodeBlock from 'src/components/BlogCodeBlock.astro'
 
 First things first, I am lazy. Lazy to create an image for my blog posts. So like any other developer, what I did was spend more time to automate generating images for blog posts instead of creating it by hand, which probably would take less time. Today, I will tell you how I did it using <ContentLink href="https://github.com/vercel/satori" text="Vercel's Satori" isOutLink /> and <ContentLink href="https://docs.astro.build/en/core-concepts/endpoints/" text="Astro's endpoints" isOutLink />.
 
@@ -26,28 +26,26 @@ Firstly we have to create a file with `.{ts|js}` extension under `/pages` folder
 
 If you are using <ContentLink href="https://docs.astro.build/en/core-concepts/routing/#dynamic-routes" text="dynamic routes" isOuterLink /> you have to use `getStaticPaths` to generate paths that will create image for each path.
 
-<CodeBlock client:idle>
-```ts
+```ts title="src/components/Blockquote.astro"
 import type { APIRoute } from 'astro'
 import { getCollection, getEntryBySlug } from 'astro:content'
 import renderOgImage from 'src/utils/renderOgImage'
 
 type Slugs = Awaited<ReturnType<typeof getCollection>>[0]['slug']
 export async function getStaticPaths() {
-	const posts = await getCollection('blog')
+    const posts = await getCollection('blog')
 
-	return posts.map((page) => ({
-		params: { slug: page.slug, tag: page.data.tag },
-		props: page,
-	}))
+    return posts.map((page) => ({
+        params: { slug: page.slug, tag: page.data.tag },
+        props: page,
+    }))
 }
 
 export const get: APIRoute = async function get({ params }) {
-	const page = await getEntryBySlug('blog', params.slug as Slugs)
-	return renderOgImage(page?.data.title, page.data.description)
+    const page = await getEntryBySlug('blog', params.slug as Slugs)
+    return renderOgImage(page?.data.title, page.data.description)
 }
 ```
-</CodeBlock>
 
 Here we first generate route for every blog content by using <ContentLink href="https://docs.astro.build/en/guides/content-collections/" text="content collection" isOuterLink /> and whenever someone sends `GET` request to this route, we select collection entry using slug and sending information about it to the function that will generate OG image.
 
@@ -58,7 +56,6 @@ To start generating images with dynamic content, we firstly need a prototype of 
 
 After creating a blueprint you can take you HTML code and use it within your function that will generate your image.
 
-<CodeBlock client:idle>
 ```ts
 import fs from 'fs/promises'
 import satori from 'satori'
@@ -158,7 +155,6 @@ export default async function renderOgImage(
 	})
 }
 ```
-</CodeBlock>
 
 So what does this code do? It firstly imports what we need in order to use this function. Secondly it imports a `.ttf` file to use as custom font on generated image. Function itself takes two arguments, first is title of the blog post and second is the description. Later we wait font to load to use it later inside satori's configuration object.
 

@@ -1,0 +1,15 @@
+---
+import Job from 'src/constants/job'
+import AboutExperience from 'src/components/AboutExperience.astro'
+---
+
+<section class="space-y-3">
+	<h2 class="section-header">Experiences</h2>
+	<ul class="space-y-3">
+		{
+		Job.previous.map((exp) => (
+			<AboutExperience experience={exp} />
+		))
+		}
+	</ul>
+</section>

@@ -1,0 +1,35 @@
+---
+import type { IRouteItem } from 'src/types/route'
+interface Props {
+	route: IRouteItem
+	currentPathname: string
+}
+const {route, currentPathname} = Astro.props as Props
+
+const to = `${route.href}`
+
+const isBlog =  currentPathname.includes('blog') && to.includes('blog')
+const isActive = isBlog ? true : to === currentPathname
+---
+
+{
+route.soon ? (
+
+	<li role="menuitem" class="flex space-x-1 items-center">
+		<span>{ route.text }</span>
+		<span class="text-xs">(soon)</span>
+	</li>
+	) : (
+		<li role="menuitem">
+			<a
+				href={to}
+				class:list={{
+					'text-black font-semibold underline underline-offset-2': isActive,
+					'text-zinc-600': !isActive
+				}}
+				>
+				{ route.text }
+			</a>
+		</li>
+)
+}

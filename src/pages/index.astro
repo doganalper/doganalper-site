@@ -1,8 +1,8 @@
 ---
 import MainLayout from 'src/layouts/main.astro'
-import About from 'src/components/About.vue'
-import Home from 'src/components/Home.vue'
-import HomeBookmarksSection from 'src/components/HomeBookmarksSection.vue';
+import About from 'src/components/About.astro'
+import Home from 'src/components/Home.astro'
+import HomeBookmarksSection from 'src/components/HomeBookmarksSection.astro';
 import getRaindropBookmarks from 'src/utils/raindrop';
 
 const bookmarks = await getRaindropBookmarks({
