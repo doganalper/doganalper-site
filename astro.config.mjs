@@ -7,7 +7,9 @@ import { remarkReadingTime } from './reading-time.mjs'
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [tailwind(), mdx(), sitemap()],
+	integrations: [tailwind(), mdx(), sitemap({
+		filter: (page) => !page.includes("og-image.png")
+	})],
 	markdown: {
 		remarkPlugins: [remarkReadingTime],
 		shikiConfig: {
