@@ -3,8 +3,8 @@ import satori from 'satori'
 import sharp from 'sharp'
 import path from "path"
 
-// const font = fs.readFile('./public/fonts/RobotoMono-Regular.ttf')
-const font = fs.readFile(path.join(process.cwd(),"public", "fonts", "RobotoMono-Regular.ttf"))
+const font = fs.readFile('./public/fonts/RobotoMono-Regular.ttf')
+// const font = fs.readFile(path.join(process.cwd(),"public", "fonts", "RobotoMono-Regular.ttf"))
 
 export default async function renderOgImage(
 	title: string,
