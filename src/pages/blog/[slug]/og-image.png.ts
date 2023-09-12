@@ -9,12 +9,12 @@ export async function getStaticPaths() {
 	const posts = await getCollection('blog')
 
 	return posts.map((page) => ({
-		params: { slug: page.slug, tag: page.data.tag },
+		params: { slug: page.slug },
 		props: page,
 	}))
 }
 
-export const GET: APIRoute = async function get({ params }) {
+export const GET: APIRoute = async function GET({ params }) {
 	const page = await getEntryBySlug('blog', params.slug as Slugs)
 	return renderOgImage(page?.data.title, page.data.description)
 }

@@ -6,7 +6,7 @@ const {entry} = Astro.props as {
 	entry: BlogEntry
 }
 
-const link = `/blog/${entry.data.tag}/${entry.slug}`
+const link = `/blog/${entry.slug}`
 ---
 
 <a class="flex flex-col space-y-1 hover:border-l-2 hover:border-l-black hover:pl-4 transition-all" href={link}>
