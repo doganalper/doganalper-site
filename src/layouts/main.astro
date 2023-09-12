@@ -29,8 +29,8 @@ const { title = 'Alper Doğan', description = DESCRIPTION, imagePath, isArticle 
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={url} />
 		{imagePath && (
-			<meta property="twitter:image" content={`${url}${imagePath}`} slot="og-tags" />
-			<meta property="og:image" content={`${url}${imagePath}`} slot="og-tags" />
+			<meta property="twitter:image" content={`${url}/${imagePath}`} slot="og-tags" />
+			<meta property="og:image" content={`${url}/${imagePath}`} slot="og-tags" />
 		)}
 		<meta name="robots" content="index, follow" />
 		<meta name="keywords" content="learning, education, tutorial, web development, nuxtjs, vuejs"/>
