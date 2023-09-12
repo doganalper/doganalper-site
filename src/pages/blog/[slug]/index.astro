@@ -3,6 +3,8 @@ import MainLayout from 'src/layouts/main.astro'
 import BlogPostMetaInfo from 'src/components/BlogPostMetaInfo.astro'
 import { getCollection, getEntry } from 'astro:content'
 
+export const prerender = true;
+
 export async function getStaticPaths() {
 	const posts = await getCollection('blog')
 
