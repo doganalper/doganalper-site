@@ -1,4 +1,4 @@
-export default function(str: string): string {
+export default function (str: string): string {
 	if (!str) {
 		return ''
 	}

@@ -3,6 +3,7 @@ import MainLayout from 'src/layouts/main.astro'
 import About from 'src/components/About.astro'
 import Home from 'src/components/Home.astro'
 import HomeBookmarksSection from 'src/components/HomeBookmarksSection.astro';
+import HomeBookLogSection from 'src/components/HomeBookLogSection.astro';
 import getRaindropBookmarks from 'src/utils/raindrop';
 
 const bookmarks = await getRaindropBookmarks({
@@ -16,6 +17,11 @@ const bookmarks = await getRaindropBookmarks({
 			<Home/>
 			<About />
 		</div>
-		<HomeBookmarksSection bookmarks={bookmarks.items} />
+		<div>
+			<div class="sticky top-4 space-y-10">
+				<HomeBookmarksSection bookmarks={bookmarks.items} />
+				<HomeBookLogSection />
+			</div>
+		</div>
 	</div>
 </MainLayout>
