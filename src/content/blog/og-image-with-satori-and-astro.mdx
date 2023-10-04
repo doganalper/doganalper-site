@@ -5,6 +5,7 @@ description: Using Vercel's Satori library with Astro's endpoints to generate OG
 publishDate: 2023-08-30
 language: en
 ---
+
 import ContentLink from 'src/components/ContentLink.astro'
 
 First things first, I am lazy. Lazy to create an image for my blog posts. So like any other developer, what I did was spend more time to automate generating images for blog posts instead of creating it by hand, which probably would take less time. Today, I will tell you how I did it using <ContentLink href="https://github.com/vercel/satori" text="Vercel's Satori" isOutLink /> and <ContentLink href="https://docs.astro.build/en/core-concepts/endpoints/" text="Astro's endpoints" isOutLink />.
@@ -32,17 +33,17 @@ import renderOgImage from 'src/utils/renderOgImage'
 
 type Slugs = Awaited<ReturnType<typeof getCollection>>[0]['slug']
 export async function getStaticPaths() {
-    const posts = await getCollection('blog')
+	const posts = await getCollection('blog')
 
-    return posts.map((page) => ({
-        params: { slug: page.slug },
-        props: page,
-    }))
+	return posts.map((page) => ({
+		params: { slug: page.slug },
+		props: page,
+	}))
 }
 
 export const get: APIRoute = async function get({ params }) {
-    const page = await getEntryBySlug('blog', params.slug as Slugs)
-    return renderOgImage(page?.data.title, page.data.description)
+	const page = await getEntryBySlug('blog', params.slug as Slugs)
+	return renderOgImage(page?.data.title, page.data.description)
 }
 ```
 
@@ -51,7 +52,6 @@ Here we first generate route for every blog content by using <ContentLink href="
 ### Generating with Satori
 
 To start generating images with dynamic content, we firstly need a prototype of the image. This will be blueprint of the image, how it will look, where to place things etc. There is a <ContentLink href="https://og-playground.vercel.app/" text="playground" isOuterLink /> that Vercel provides to create the blueprint that I mentioned. Here you can create it using HTML, CSS, JSX and see the preview of it. You can add fonts, use <ContentLink href="https://tailwindcss.com/" text="Tailwind" isOuterLink /> (it is experimental as I am writing this).
-
 
 After creating a blueprint you can take you HTML code and use it within your function that will generate your image.
 
@@ -164,4 +164,5 @@ Next, we use <ContentLink href="https://www.npmjs.com/package/sharp" text="sharp
 Lastly, since this function will be only used in API route we can return API response that we will serve when related API route get request.
 
 Generated image will be like this for me, I know it is not pretty but I'm not a designer or something 😄
+
 <img src="/images/OG-image-example.png" width="800" class="mx-auto" />

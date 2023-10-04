@@ -8,7 +8,7 @@ const {bookmark} = Astro.props as {
 ---
 
 <div
-	class="text-lg space-y-0.5 text-gray-600 hover:text-inherit transition-colors"
+	class="text-lg space-y-0.5 external-link"
 	>
 	<a href={bookmark.link} target="_blank" class="line-clamp-2" title={bookmark.title}>
 		{ bookmark.title }

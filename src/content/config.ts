@@ -11,7 +11,7 @@ const blogCollection = defineCollection({
 		description: z.string().min(20).max(120),
 		publishDate: z.date(),
 		draft: z.boolean().optional(),
-		language: z.enum(languages)
+		language: z.enum(languages),
 	}),
 })
 

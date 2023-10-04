@@ -1,0 +1,13 @@
+---
+const {header} = Astro.props as {
+	header: string
+}
+---
+
+<div class="space-y-1.5">
+	<h2 class="text-2xl">{header}</h2>
+	<hr color="black" />
+	<div class="space-y-4">
+		<slot />
+	</div>
+</div>
