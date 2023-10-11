@@ -7,9 +7,15 @@ type BookLog = {
 
 const bookLog: BookLog[] = [
 	{
+		name: "The Iron Heel",
+		author: "Jack London",
+		current: true,
+		link: "https://www.goodreads.com/book/show/929783.The_Iron_Heel"
+	},
+	{
 		name: 'Social Justice and the City',
 		author: 'David Harvey',
-		current: true,
+		current: false,
 		link: 'https://www.goodreads.com/book/show/184940.Social_Justice_and_the_City',
 	},
 	{
