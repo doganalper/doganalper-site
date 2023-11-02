@@ -6,10 +6,16 @@ type BookLog = {
 }
 
 const bookLog: BookLog[] = [
+ {
+  name: 'Kitchen Confidential: Adventure in the Culinary Underbelly',
+  author: 'Anthony Bourdain',
+  current: true,
+  link: 'https://www.goodreads.com/book/show/33313.Kitchen_Confidential'
+ },
 	{
 		name: "The Iron Heel",
 		author: "Jack London",
-		current: true,
+		current: false,
 		link: "https://www.goodreads.com/book/show/929783.The_Iron_Heel"
 	},
 	{
