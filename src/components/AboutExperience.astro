@@ -25,7 +25,7 @@ dateStr += experience.dates[1] ?? 'Present'
 		</summary>
 		<span class="pl-2 mt-2">
 			<h4>{ experience.role }</h4>
-			<p class="text-lg">{ experience.companySummary }</p>
+			{experience.companySummary && <p class="text-lg">{ experience.companySummary }</p>}
 			<ul class="list-disc pl-10 space-y-1 mt-2 text-base">
 				{
 				experience.roleSummary.map((sum) => (

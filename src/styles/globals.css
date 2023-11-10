@@ -12,6 +12,7 @@
 
 * {
 	font-family: 'Poppins';
+	user-select: none;
 }
 
 .astro-code {

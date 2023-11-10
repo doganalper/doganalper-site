@@ -1,5 +1,5 @@
 ---
-import Job from 'src/constants/job'
+import Jobs from 'src/constants/job'
 import AboutExperience from 'src/components/AboutExperience.astro'
 ---
 
@@ -7,7 +7,7 @@ import AboutExperience from 'src/components/AboutExperience.astro'
 	<h2 class="section-header">Experiences</h2>
 	<ul class="space-y-3">
 		{
-		Job.previous.map((exp) => (
+		Jobs.map((exp) => (
 			<AboutExperience experience={exp} />
 		))
 		}
