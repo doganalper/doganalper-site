@@ -6,23 +6,23 @@ import { getCollection, getEntry } from 'astro:content'
 export const prerender = true;
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog')
+  const posts = await getCollection('blog')
 
-	return posts.map((page) => ({
-		params: { slug: page.slug },
-		props: page,
-	}))
+  return posts.map((page) => ({
+    params: { slug: page.slug },
+    props: page,
+  }))
 }
 
 const { slug } = Astro.params
 if (slug === undefined) {
-	throw new Error('Slug is required')
+  throw new Error('Slug is required')
 }
 
 const entry = await getEntry('blog', slug)
 
 if (entry === undefined) {
-	return Astro.redirect('/404')
+  return Astro.redirect('/404')
 }
 
 const { Content, remarkPluginFrontmatter } = await entry.render()
@@ -32,16 +32,16 @@ const imagePath = `og-image.png`
 ---
 
 <MainLayout title={title} description={entry.data.description} imagePath={imagePath} isArticle>
-	<article class="space-y-5">
-		<header class="space-y-1.5">
-			<h1 class="text-3xl text-black font-semibold">
-				{entry.data.title}
-			</h1>
-			<h2 class="text-xl">{entry.data.description}</h2>
-			<BlogPostMetaInfo entry={entry} readingTime={remarkPluginFrontmatter.minutesRead}/>
-		</header>
-		<section class="prose leading-8 text-lg space-y-2 tracking-wide max-w-none">
-			<Content />
-		</section>
-	</article>
+  <article class="space-y-5">
+    <header class="space-y-1.5">
+      <h1 class="text-3xl text-black font-semibold">
+        {entry.data.title}
+      </h1>
+      <h2 class="text-xl">{entry.data.description}</h2>
+      <BlogPostMetaInfo entry={entry} readingTime={remarkPluginFrontmatter.minutesRead}/>
+    </header>
+    <section class="prose leading-8 text-lg space-y-2 tracking-wide max-w-none">
+      <Content />
+    </section>
+  </article>
 </MainLayout>

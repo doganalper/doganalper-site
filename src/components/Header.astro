@@ -3,21 +3,21 @@ import Routes from 'src/constants/routes'
 import HeaderLink from 'src/components/HeaderLink.astro'
 
 const {pathname} = Astro.props as {
-	pathname: string
+  pathname: string
 }
 ---
 
 <header>
-	<nav role="navigation">
-		<ul role="menu" class="flex space-x-6">
-			{
-			Routes.map((route) => (
-				<HeaderLink
-					route={route}
-					currentPathname={pathname}
-				/>
-			))
-			}
-		</ul>
-	</nav>
+  <nav role="navigation">
+    <ul role="menu" class="flex space-x-6">
+      {
+      Routes.map((route) => (
+        <HeaderLink
+          route={route}
+          currentPathname={pathname}
+        />
+      ))
+      }
+    </ul>
+  </nav>
 </header>

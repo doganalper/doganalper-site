@@ -3,24 +3,24 @@ import SocialPlatforms from 'src/constants/social'
 ---
 
 <section>
-	<div class="md:col-span-6 space-y-1.5">
-		<h1 class="text-4xl">
-			Hello, I am
-			<strong class="text-black">Alper</strong>
-		</h1>
-		<div class="flex space-x-2">
-			{
-			SocialPlatforms.map((platform) => (
-				<a
-					href={platform.href}
-					rel="noreferrer"
-					class="external-link"
-					target="_blank"
-					>
-					{ platform.name }
-				</a>
-			))
-			}
-		</div>
-	</div>
+  <div class="md:col-span-6 space-y-1.5">
+    <h1 class="text-4xl">
+      Hello, I am
+      <strong class="text-black">Alper</strong>
+    </h1>
+    <div class="flex space-x-2">
+      {
+      SocialPlatforms.map((platform) => (
+        <a
+          href={platform.href}
+          rel="noreferrer"
+          class="external-link"
+          target="_blank"
+          >
+          { platform.name }
+        </a>
+      ))
+      }
+    </div>
+  </div>
 </section>

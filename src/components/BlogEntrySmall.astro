@@ -3,17 +3,17 @@ import type { BlogEntry } from 'src/types/blog'
 import BlogPostMetaInfo from 'src/components/BlogPostMetaInfo.astro'
 
 const {entry} = Astro.props as {
-	entry: BlogEntry
+  entry: BlogEntry
 }
 
 const link = `/blog/${entry.slug}`
 ---
 
 <a class="list-link" href={link}>
-	<h3>
-		{ entry.data.title }
-		{ entry.data.draft && '(DRAFT)' }
-	</h3>
-	<BlogPostMetaInfo entry={entry} />
-	<p>{ entry.data.description }</p>
+  <h3>
+    { entry.data.title }
+    { entry.data.draft && '(DRAFT)' }
+  </h3>
+  <BlogPostMetaInfo entry={entry} />
+  <p>{ entry.data.description }</p>
 </a>

@@ -7,21 +7,21 @@ import HomeBookLogSection from 'src/components/HomeBookLogSection.astro';
 import getRaindropBookmarks from 'src/utils/raindrop';
 
 const bookmarks = await getRaindropBookmarks({
-	perPage: 5
+  perPage: 5
 })
 ---
 
 <MainLayout>
-	<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-		<div class="col-span-3 space-y-4">
-			<Home/>
-			<About />
-		</div>
-		<div>
-			<div class="sticky top-4 space-y-10">
-				<HomeBookmarksSection bookmarks={bookmarks.items} />
-				<HomeBookLogSection />
-			</div>
-		</div>
-	</div>
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="col-span-3 space-y-4">
+      <Home/>
+      <About />
+    </div>
+    <div>
+      <div class="sticky top-4 space-y-10">
+        <HomeBookmarksSection bookmarks={bookmarks.items} />
+        <HomeBookLogSection />
+      </div>
+    </div>
+  </div>
 </MainLayout>

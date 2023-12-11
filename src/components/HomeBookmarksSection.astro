@@ -4,14 +4,14 @@ import type { Bookmark } from 'src/types/raindrop'
 import HomeRightSection from 'src/components/HomeRightSection.astro'
 
 const {bookmarks} = Astro.props as {
-	bookmarks: Bookmark[]
+  bookmarks: Bookmark[]
 }
 ---
 
 <HomeRightSection header="Latest Bookmarks">
-	{bookmarks.map((bookmark) => (
-		<BookmarkItem
-			bookmark={bookmark}
-		/>
-	))}
+  {bookmarks.map((bookmark) => (
+    <BookmarkItem
+      bookmark={bookmark}
+    />
+  ))}
 </HomeRightSection>
