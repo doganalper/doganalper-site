@@ -1,15 +1,15 @@
 ---
 import Jobs from 'src/constants/job'
 import AboutExperience from 'src/components/AboutExperience.astro'
+import HomeSection from 'src/components/HomeSection.astro';
 ---
 
-<section class="space-y-3">
-  <h2 class="section-header">Experiences</h2>
-  <ul class="space-y-3">
+<HomeSection header="Experiences">
+  <ul class="space-y-3 pt-1">
     {
     Jobs.map((exp) => (
       <AboutExperience experience={exp} />
     ))
     }
   </ul>
-</section>
+</HomeSection>

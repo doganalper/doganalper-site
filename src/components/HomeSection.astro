@@ -4,10 +4,10 @@ const {header} = Astro.props as {
 }
 ---
 
-<div class="space-y-1.5">
-  <h2 class="text-2xl">{header}</h2>
+<section class="space-y-1.5">
+  <h2 class="section-header">{header}</h2>
   <hr color="black" />
   <div class="space-y-4">
     <slot />
   </div>
-</div>
+</section>
