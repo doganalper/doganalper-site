@@ -8,7 +8,7 @@ const Jobs = [
       "Implementing design changes and creating new pages depending on customer's requests.",
     ],
     stack: ['Javascript', 'Tailwindcss', 'Scss', 'Django Jinja'],
-    dates: ['10/2021', '11/2021'],
+    dates: ['10/2021', '12/2021'],
   },
   {
     company: 'StoreSpy',
