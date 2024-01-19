@@ -1,36 +1,36 @@
 ---
-import type { IExperience } from 'src/types/job'
-import LinkIcon from 'src/components/LinkIcon.astro'
+import type { IExperience } from "src/types/job";
+import LinkIcon from "src/components/LinkIcon.astro";
 
-const {experience} = Astro.props as {
-  experience: IExperience
-}
+const { experience } = Astro.props as {
+  experience: IExperience;
+};
 
-let dateStr = `${experience.dates[0]} - `
-dateStr += experience.dates[1] ?? 'Present'
-
+let dateStr = `${experience.dates[0]} - `;
+dateStr += experience.dates[1] ?? "Present";
 ---
 
-<details class="text-xl flex space-x-3" name="experiences" open={!experience.dates[1]}>
+<details
+  class="text-xl flex space-x-3"
+  name="experiences"
+  open={!experience.dates[1]}
+>
   <summary class="cursor-pointer">
     <h3 class="space-x-2 inline-flex items-center">
-      <span class="no-underline">{ experience.company }</span>
-      <span class="select-none">{ dateStr }</span>
-      <LinkIcon
-        href={experience.href}
-        name={experience.company}
-      />
+      <span class="no-underline">{experience.company}</span>
+      <span class="select-none">{dateStr}</span>
+      <LinkIcon href={experience.href} name={experience.company} />
     </h3>
   </summary>
   <span class="pl-2 mt-2">
-    <h4>{ experience.role }</h4>
-    {experience.companySummary && <p class="text-lg">{ experience.companySummary }</p>}
+    <h4>{experience.role}</h4>
+    {
+      experience.companySummary && (
+        <p class="text-lg">{experience.companySummary}</p>
+      )
+    }
     <ul class="list-disc pl-10 space-y-1 mt-2 text-base">
-      {
-      experience.roleSummary.map((sum) => (
-        <li> { sum } </li>
-      ))
-      }
+      {experience.roleSummary.map((sum) => <li> {sum} </li>)}
     </ul>
   </span>
 </details>

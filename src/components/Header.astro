@@ -1,22 +1,19 @@
 ---
-import Routes from 'src/constants/routes'
-import HeaderLink from 'src/components/HeaderLink.astro'
+import Routes from "src/constants/routes";
+import HeaderLink from "src/components/HeaderLink.astro";
 
-const {pathname} = Astro.props as {
-  pathname: string
-}
+const { pathname } = Astro.props as {
+  pathname: string;
+};
 ---
 
 <header class="border-b pb-4 -mx-6 px-6 pt-6 sticky top-0 bg-inherit z-[2]">
   <nav role="navigation">
     <ul role="menu" class="flex space-x-6 w-full">
       {
-      Routes.map((route) => (
-        <HeaderLink
-          route={route}
-          currentPathname={pathname}
-        />
-      ))
+        Routes.map((route) => (
+          <HeaderLink route={route} currentPathname={pathname} />
+        ))
       }
     </ul>
   </nav>

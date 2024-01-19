@@ -1,7 +1,7 @@
-import type { CollectionEntry } from 'astro:content'
+import type { CollectionEntry } from "astro:content";
 
-export type BlogEntry = CollectionEntry<'blog'> & {
+export type BlogEntry = CollectionEntry<"blog"> & {
   data: {
-    publishDate: string
-  }
-}
+    publishDate: string;
+  };
+};

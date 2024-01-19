@@ -1,5 +1,5 @@
 ---
-import SocialPlatforms from 'src/constants/social'
+import SocialPlatforms from "src/constants/social";
 ---
 
 <section>
@@ -10,16 +10,16 @@ import SocialPlatforms from 'src/constants/social'
     </h1>
     <div class="flex space-x-2">
       {
-      SocialPlatforms.map((platform) => (
-        <a
-          href={platform.href}
-          rel="noreferrer"
-          class="external-link"
-          target="_blank"
+        SocialPlatforms.map((platform) => (
+          <a
+            href={platform.href}
+            rel="noreferrer"
+            class="external-link"
+            target="_blank"
           >
-          { platform.name }
-        </a>
-      ))
+            {platform.name}
+          </a>
+        ))
       }
     </div>
   </div>

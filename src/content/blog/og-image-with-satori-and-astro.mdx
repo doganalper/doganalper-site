@@ -6,7 +6,7 @@ publishDate: 2023-08-30
 language: en
 ---
 
-import ContentLink from 'src/components/ContentLink.astro'
+import ContentLink from "src/components/ContentLink.astro";
 
 First things first, I am lazy. Lazy to create an image for my blog posts. So like any other developer, what I did was spend more time to automate generating images for blog posts instead of creating it by hand, which probably would take less time. Today, I will tell you how I did it using <ContentLink href="https://github.com/vercel/satori" text="Vercel's Satori" isOutLink /> and <ContentLink href="https://docs.astro.build/en/core-concepts/endpoints/" text="Astro's endpoints" isOutLink />.
 
@@ -27,24 +27,24 @@ Firstly we have to create a file with `.{ts|js}` extension under `/pages` folder
 If you are using <ContentLink href="https://docs.astro.build/en/core-concepts/routing/#dynamic-routes" text="dynamic routes" isOuterLink /> you have to use `getStaticPaths` to generate paths that will create image for each path.
 
 ```ts title="src/components/Blockquote.astro"
-import type { APIRoute } from 'astro'
-import { getCollection, getEntryBySlug } from 'astro:content'
-import renderOgImage from 'src/utils/renderOgImage'
+import type { APIRoute } from "astro";
+import { getCollection, getEntryBySlug } from "astro:content";
+import renderOgImage from "src/utils/renderOgImage";
 
-type Slugs = Awaited<ReturnType<typeof getCollection>>[0]['slug']
+type Slugs = Awaited<ReturnType<typeof getCollection>>[0]["slug"];
 export async function getStaticPaths() {
-	const posts = await getCollection('blog')
+  const posts = await getCollection("blog");
 
-	return posts.map((page) => ({
-		params: { slug: page.slug },
-		props: page,
-	}))
+  return posts.map((page) => ({
+    params: { slug: page.slug },
+    props: page,
+  }));
 }
 
 export const get: APIRoute = async function get({ params }) {
-	const page = await getEntryBySlug('blog', params.slug as Slugs)
-	return renderOgImage(page?.data.title, page.data.description)
-}
+  const page = await getEntryBySlug("blog", params.slug as Slugs);
+  return renderOgImage(page?.data.title, page.data.description);
+};
 ```
 
 Here we first generate route for every blog content by using <ContentLink href="https://docs.astro.build/en/guides/content-collections/" text="content collection" isOuterLink /> and whenever someone sends `GET` request to this route, we select collection entry using slug and sending information about it to the function that will generate OG image.
@@ -56,102 +56,102 @@ To start generating images with dynamic content, we firstly need a prototype of 
 After creating a blueprint you can take you HTML code and use it within your function that will generate your image.
 
 ```ts
-import fs from 'fs/promises'
-import satori from 'satori'
-import sharp from 'sharp'
+import fs from "fs/promises";
+import satori from "satori";
+import sharp from "sharp";
 
-const font = fs.readFile('./public/RobotoMono-Regular.ttf')
+const font = fs.readFile("./public/RobotoMono-Regular.ttf");
 
 export default async function renderOgImage(
-	title: string,
-	description: string,
+  title: string,
+  description: string,
 ) {
-	const fontData = await font
+  const fontData = await font;
 
-	const svg = await satori(
-		{
-			type: 'div',
-			props: {
-				style: {
-					height: '100%',
-					width: '100%',
-					display: 'flex',
-					flexDirection: 'row',
-					alignItems: 'center',
-					backgroundColor: '#f5f5f5',
-					paddingLeft: '20px',
-				},
-				children: [
-					{
-						style: 'div',
-						props: {
-							style: {
-								height: '100%',
-								width: '2px',
-								backgroundColor: 'black',
-							},
-						},
-					},
-					{
-						style: 'div',
-						props: {
-							style: {
-								display: 'flex',
-								flexDirection: 'column',
-								flex: 1,
-								justifyContent: 'center',
-								marginLeft: '7%',
-							},
-							children: [
-								{
-									style: 'div',
-									props: {
-										style: {
-											fontSize: 36,
-											fontWeight: 600,
-										},
-										children: title,
-									},
-								},
-								{
-									style: 'div',
-									props: {
-										style: {
-											fontSize: 24,
-											fontWeight: 500,
-											color: '#71717a',
-											maxWidth: '70%',
-										},
-										children: description,
-									},
-								},
-							],
-						},
-					},
-				],
-			},
-		},
-		{
-			width: 1200,
-			height: 630,
-			fonts: [
-				{
-					name: 'Roboto',
-					data: fontData,
-					weight: 400,
-					style: 'normal',
-				},
-			],
-		},
-	)
+  const svg = await satori(
+    {
+      type: "div",
+      props: {
+        style: {
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          backgroundColor: "#f5f5f5",
+          paddingLeft: "20px",
+        },
+        children: [
+          {
+            style: "div",
+            props: {
+              style: {
+                height: "100%",
+                width: "2px",
+                backgroundColor: "black",
+              },
+            },
+          },
+          {
+            style: "div",
+            props: {
+              style: {
+                display: "flex",
+                flexDirection: "column",
+                flex: 1,
+                justifyContent: "center",
+                marginLeft: "7%",
+              },
+              children: [
+                {
+                  style: "div",
+                  props: {
+                    style: {
+                      fontSize: 36,
+                      fontWeight: 600,
+                    },
+                    children: title,
+                  },
+                },
+                {
+                  style: "div",
+                  props: {
+                    style: {
+                      fontSize: 24,
+                      fontWeight: 500,
+                      color: "#71717a",
+                      maxWidth: "70%",
+                    },
+                    children: description,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      width: 1200,
+      height: 630,
+      fonts: [
+        {
+          name: "Roboto",
+          data: fontData,
+          weight: 400,
+          style: "normal",
+        },
+      ],
+    },
+  );
 
-	const png = await sharp(Buffer.from(svg)).png().toBuffer()
+  const png = await sharp(Buffer.from(svg)).png().toBuffer();
 
-	return new Response(png, {
-		headers: {
-			'Content-Type': 'image/png',
-		},
-	})
+  return new Response(png, {
+    headers: {
+      "Content-Type": "image/png",
+    },
+  });
 }
 ```
 

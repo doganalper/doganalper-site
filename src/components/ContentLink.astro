@@ -1,15 +1,15 @@
 ---
-const {href, text, isOuterLink} = Astro.props as {
-  href: string
-  text: string
-  isOuterLink?: boolean
-}
+const { href, text, isOuterLink } = Astro.props as {
+  href: string;
+  text: string;
+  isOuterLink?: boolean;
+};
 ---
 
 <a
   href={href}
-  target={isOuterLink ? '_blank' : '_self'}
+  target={isOuterLink ? "_blank" : "_self"}
   class="underline underline-offset-1 hover:text-black"
-  >
-  { text }
+>
+  {text}
 </a>

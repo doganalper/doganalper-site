@@ -1,45 +1,47 @@
 ---
-import type { CollectionEntry } from 'astro:content'
-import formatDate from 'src/utils/formatDate'
+import type { CollectionEntry } from "astro:content";
+import formatDate from "src/utils/formatDate";
 
-const {entry, readingTime} = Astro.props as {
-  entry: CollectionEntry<'blog'>
-  readingTime?: string
-}
+const { entry, readingTime } = Astro.props as {
+  entry: CollectionEntry<"blog">;
+  readingTime?: string;
+};
 
 const publishDate = formatDate(entry.data.publishDate, {
-  locale: entry.data.language || 'en',
+  locale: entry.data.language || "en",
   weekday: false,
-})
+});
 
 const tags = {
   tr: {
-    development: 'Yazılım',
-    travel: 'Gezi',
-    life: 'Hayat',
+    development: "Yazılım",
+    travel: "Gezi",
+    life: "Hayat",
   },
   en: {
-    development: 'Development',
-    travel: 'Travel',
-    life: 'Life',
+    development: "Development",
+    travel: "Travel",
+    life: "Life",
   },
-}
+};
 
-const tag = tags[entry.data.language || 'en'][entry.data.tag]
+const tag = tags[entry.data.language || "en"][entry.data.tag];
 
-const time = entry.data.publishDate.toISOString()
+const time = entry.data.publishDate.toISOString();
 ---
 
 <div class="space-x-2.5 text-sm">
   <time datetime={time}>
-    { publishDate }
+    {publishDate}
   </time>
   <span>-</span>
-  <span>{ tag }</span>
-  {readingTime && (
-    <>
-      <span>-</span>
-      <span>{ readingTime }</span>
-    </>
-  )}
+  <span>{tag}</span>
+  {
+    readingTime && (
+      <>
+        <span>-</span>
+        <span>{readingTime}</span>
+      </>
+    )
+  }
 </div>

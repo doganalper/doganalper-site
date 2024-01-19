@@ -1,7 +1,7 @@
-import { z, defineCollection } from 'astro:content'
-import BlogTags from 'src/constants/blogTags'
+import { z, defineCollection } from "astro:content";
+import BlogTags from "src/constants/blogTags";
 
-export const languages = ['en', 'tr'] as const
+export const languages = ["en", "tr"] as const;
 
 const blogCollection = defineCollection({
   schema: z.object({
@@ -13,8 +13,8 @@ const blogCollection = defineCollection({
     draft: z.boolean().optional(),
     language: z.enum(languages),
   }),
-})
+});
 
 export const collections = {
   blog: blogCollection,
-}
+};

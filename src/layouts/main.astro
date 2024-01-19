@@ -1,15 +1,20 @@
 ---
-import { ViewTransitions } from 'astro:transitions'
-import SpeedInsights from '@vercel/speed-insights/astro'
+import { ViewTransitions } from "astro:transitions";
+import SpeedInsights from "@vercel/speed-insights/astro";
 
-import Header from 'src/components/Header.astro'
-const DESCRIPTION = 'Developer based in İstanbul, Türkiye'
-import 'src/styles/globals.css'
+import Header from "src/components/Header.astro";
+const DESCRIPTION = "Developer based in İstanbul, Türkiye";
+import "src/styles/globals.css";
 
-const { pathname, origin } = Astro.url
-const url = `${origin}${pathname}`
+const { pathname, origin } = Astro.url;
+const url = `${origin}${pathname}`;
 
-const { title = 'Alper Doğan', description = DESCRIPTION, imagePath, isArticle = false } = Astro.props
+const {
+  title = "Alper Doğan",
+  description = DESCRIPTION,
+  imagePath,
+  isArticle = false,
+} = Astro.props;
 ---
 
 <html lang="en">
@@ -29,12 +34,27 @@ const { title = 'Alper Doğan', description = DESCRIPTION, imagePath, isArticle 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={url} />
-    {imagePath && (
-      <meta property="twitter:image" content={`${url}${imagePath}`} slot="og-tags" />
-      <meta property="og:image" content={`${url}${imagePath}`} slot="og-tags" />
-    )}
+    {
+      imagePath && (
+        <>
+          <meta
+            property="twitter:image"
+            content={`${url}${imagePath}`}
+            slot="og-tags"
+          />
+          <meta
+            property="og:image"
+            content={`${url}${imagePath}`}
+            slot="og-tags"
+          />
+        </>
+      )
+    }
     <meta name="robots" content="index, follow" />
-    <meta name="keywords" content="learning, education, tutorial, web development, nuxtjs, vuejs"/>
+    <meta
+      name="keywords"
+      content="learning, education, tutorial, web development, nuxtjs, vuejs"
+    />
     <ViewTransitions />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />

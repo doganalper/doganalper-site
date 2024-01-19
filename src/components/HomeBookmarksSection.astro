@@ -1,17 +1,13 @@
 ---
-import BookmarkItem from 'src/components/BookmarkItem.astro'
-import type { Bookmark } from 'src/types/raindrop'
-import HomeSection from 'src/components/HomeSection.astro'
+import BookmarkItem from "src/components/BookmarkItem.astro";
+import type { Bookmark } from "src/types/raindrop";
+import HomeSection from "src/components/HomeSection.astro";
 
-const {bookmarks} = Astro.props as {
-  bookmarks: Bookmark[]
-}
+const { bookmarks } = Astro.props as {
+  bookmarks: Bookmark[];
+};
 ---
 
 <HomeSection header="Latest Bookmarks">
-  {bookmarks.map((bookmark) => (
-    <BookmarkItem
-      bookmark={bookmark}
-    />
-  ))}
+  {bookmarks.map((bookmark) => <BookmarkItem bookmark={bookmark} />)}
 </HomeSection>

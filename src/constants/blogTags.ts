@@ -1,3 +1,3 @@
-const tags = ['development', 'travel', 'life'] as const
+const tags = ["development", "travel", "life"] as const;
 
-export default tags
+export default tags;

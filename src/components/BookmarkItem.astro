@@ -1,27 +1,28 @@
 ---
-import type { Bookmark } from 'src/types/raindrop'
-import capitalizeString from 'src/utils/capitalizeString'
+import type { Bookmark } from "src/types/raindrop";
+import capitalizeString from "src/utils/capitalizeString";
 
-const {bookmark} = Astro.props as {
-  bookmark: Bookmark
-}
+const { bookmark } = Astro.props as {
+  bookmark: Bookmark;
+};
 ---
 
-<div
-  class="text-lg space-y-0.5 external-link"
+<div class="text-lg space-y-0.5 external-link">
+  <a
+    href={bookmark.link}
+    target="_blank"
+    class="line-clamp-2"
+    title={bookmark.title}
   >
-  <a href={bookmark.link} target="_blank" class="line-clamp-2" title={bookmark.title}>
-    { bookmark.title }
+    {bookmark.title}
   </a>
   <div class="flex flex-wrap gap-2 text-xs">
     {
-    bookmark.tags.map((tag) => (
-      <div
-        class="border border-gray-400 rounded-full py-0.5 px-2 cursor-default"
-        >
-        { capitalizeString(tag) }
-      </div>
-    ))
+      bookmark.tags.map((tag) => (
+        <div class="border border-gray-400 rounded-full py-0.5 px-2 cursor-default">
+          {capitalizeString(tag)}
+        </div>
+      ))
     }
   </div>
 </div>
