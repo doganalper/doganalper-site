@@ -1,10 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{astro,html,md,mdx}'],
+  content: ["./src/**/*.{astro,html,md,mdx}"],
   theme: {
-    extend: {},
+    extend: {
+      transitionProperty: {
+        filter: "filter",
+      },
+    },
   },
-  plugins: [
-    require('@tailwindcss/typography')
-  ],
-}
+  plugins: [require("@tailwindcss/typography")],
+};
