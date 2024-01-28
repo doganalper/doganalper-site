@@ -14,7 +14,7 @@ async function getRaindropBookmarks(
   const { page = 0, perPage = DEFAULT_PER_PAGE } = opts || {};
 
   const raindropUrl = new URL(
-    `https://api.raindrop.io/rest/v1/raindrops/${raindropId}`,
+    `https://api.raindrop.io/rest/v1/raindrops/41229856`,
   );
 
   raindropUrl.searchParams.set("page", page.toString());
