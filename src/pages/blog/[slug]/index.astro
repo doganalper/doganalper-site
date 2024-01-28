@@ -38,17 +38,18 @@ const imagePath = `og-image.png`;
   isArticle
 >
   <article class="space-y-5">
-    <header class="space-y-1.5">
-      <h1 class="text-3xl text-black font-semibold">
+    <header class="space-y-1.5 md:space-y-0.5 mx-auto max-w-screen-xl">
+      <h1 class="text-xl md:text-2xl text-black font-semibold">
         {entry.data.title}
       </h1>
-      <h2 class="text-xl">{entry.data.description}</h2>
+      <h2 class="text-md md:text-lg">{entry.data.description}</h2>
       <BlogPostMetaInfo
         entry={entry}
+        place="left"
         readingTime={remarkPluginFrontmatter.minutesRead}
       />
     </header>
-    <section class="prose leading-8 text-lg space-y-2 tracking-wide max-w-none">
+    <section class="prose leading-7 text-base tracking-wide max-w-none">
       <Content />
     </section>
   </article>

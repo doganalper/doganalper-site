@@ -7,6 +7,7 @@ language: en
 ---
 
 import ContentLink from "src/components/ContentLink.astro";
+import { Image } from "astro:assets";
 
 First things first, I am lazy. Lazy to create an image for my blog posts. So like any other developer, what I did was spend more time to automate generating images for blog posts instead of creating it by hand, which probably would take less time. Today, I will tell you how I did it using <ContentLink href="https://github.com/vercel/satori" text="Vercel's Satori" isOutLink /> and <ContentLink href="https://docs.astro.build/en/core-concepts/endpoints/" text="Astro's endpoints" isOutLink />.
 
@@ -165,4 +166,4 @@ Lastly, since this function will be only used in API route we can return API res
 
 Generated image will be like this for me, I know it is not pretty but I'm not a designer or something 😄
 
-<img src="/images/OG-image-example.png" width="800" class="mx-auto" />
+<Image src="/images/OG-image-example.png" alt="Og image example created with this guide" width="800" height="420" class="mx-auto" />

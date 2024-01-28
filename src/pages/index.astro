@@ -4,11 +4,6 @@ import About from "src/components/About.astro";
 import Home from "src/components/Home.astro";
 import HomeBookmarksSection from "src/components/HomeBookmarksSection.astro";
 import HomeBookLogSection from "src/components/HomeBookLogSection.astro";
-import getRaindropBookmarks from "src/utils/raindrop";
-
-const bookmarks = await getRaindropBookmarks({
-  perPage: 5,
-});
 ---
 
 <MainLayout>
@@ -17,8 +12,8 @@ const bookmarks = await getRaindropBookmarks({
       <Home />
       <About />
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <HomeBookmarksSection bookmarks={bookmarks.items} />
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+      <HomeBookmarksSection />
       <HomeBookLogSection />
     </div>
   </div>

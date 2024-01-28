@@ -1,13 +1,23 @@
 ---
 import BookmarkItem from "src/components/BookmarkItem.astro";
-import type { Bookmark } from "src/types/raindrop";
 import HomeSection from "src/components/HomeSection.astro";
+import getRaindropBookmarks from "src/utils/raindrop";
 
-const { bookmarks } = Astro.props as {
-  bookmarks: Bookmark[];
-};
+const bookmarks = await getRaindropBookmarks({
+  perPage: 10,
+});
+
+const firstCol = bookmarks.items.filter((_, idx) => idx % 2 === 0);
+const secondCol = bookmarks.items.filter((_, idx) => idx % 2 === 1);
 ---
 
 <HomeSection header="Latest Bookmarks">
-  {bookmarks.map((bookmark) => <BookmarkItem bookmark={bookmark} />)}
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 gap-4 place-content-start">
+      {firstCol.map((bookmark) => <BookmarkItem bookmark={bookmark} />)}
+    </div>
+    <div class="grid grid-cols-1 gap-4 place-content-start">
+      {secondCol.map((bookmark) => <BookmarkItem bookmark={bookmark} />)}
+    </div>
+  </div>
 </HomeSection>

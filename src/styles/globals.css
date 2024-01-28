@@ -16,6 +16,7 @@
 
 .astro-code {
   padding: 12px !important;
+  font-size: 13px !important;
 }
 
 .astro-code * {
@@ -34,7 +35,19 @@
 }
 
 section.prose :is(h1, h2, h3, h4, h5, h6) {
-  margin-top: 20px !important;
+  @apply mt-[15px] mb-0 !important;
+}
+
+section.prose :where(p):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  @apply my-1 !important;
+}
+
+section.prose h3, section.prose p {
+  @apply max-w-screen-xl mx-auto !important;
+}
+
+section.prose .astro-code {
+  @apply max-w-screen-2xl mx-auto !important;
 }
 
 @layer components {
@@ -53,5 +66,4 @@ section.prose :is(h1, h2, h3, h4, h5, h6) {
 
   .list-link h3 {
     @apply text-2xl font-semibold text-black;
-  }
-}
+  } }
