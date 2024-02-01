@@ -4,34 +4,21 @@ interface Props {
   route: IRouteItem;
   currentPathname: string;
 }
-const { route, currentPathname } = Astro.props as Props;
+const { route } = Astro.props as Props;
+const { pathname } = Astro.url;
 
-const to = `${route.href}`;
-
-console.log("[currentPathname]:", currentPathname);
-console.log("[to]:", to);
-
-const isBlog = currentPathname.includes("blog") && to.includes("blog");
-const isActive = isBlog ? true : to === currentPathname;
+const isBlog = pathname.includes("blog") && route.href.includes("blog");
+const isActive = isBlog ? true : route.href === pathname;
 ---
 
-{
-  route.soon ? (
-    <li role="menuitem" class="flex space-x-1 items-center">
-      <span>{route.text}</span>
-      <span class="text-xs">(soon)</span>
-    </li>
-  ) : (
-    <li role="menuitem">
-      <a
-        href={to}
-        class:list={{
-          "text-black font-semibold underline underline-offset-2": isActive,
-          "text-zinc-600": !isActive,
-        }}
-      >
-        {route.text}
-      </a>
-    </li>
-  )
-}
+<li role="menuitem">
+  <a
+    href={route.href}
+    class:list={{
+      "text-black font-semibold underline underline-offset-2": isActive,
+      "text-zinc-600": !isActive,
+    }}
+  >
+    {route.text}
+  </a>
+</li>

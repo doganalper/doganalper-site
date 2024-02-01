@@ -1,10 +1,6 @@
 ---
 import Routes from "src/constants/routes";
 import HeaderLink from "src/components/HeaderLink.astro";
-
-const { pathname } = Astro.props as {
-  pathname: string;
-};
 ---
 
 <header
@@ -14,7 +10,7 @@ const { pathname } = Astro.props as {
     <ul role="menu" class="flex space-x-6 w-full">
       {
         Routes.map((route) => (
-          <HeaderLink route={route} currentPathname={pathname} />
+          <HeaderLink route={route} />
         ))
       }
     </ul>
@@ -22,17 +18,17 @@ const { pathname } = Astro.props as {
 </header>
 
 <script>
-  // function checkScrollY() {
-  //   const header = document.querySelector("header");
-  //   if (Math.round(scrollY) >= 60) {
-  //     header?.classList.add("sticked");
-  //   } else {
-  //     header?.classList.remove("sticked");
-  //   }
-  // }
+  function checkScrollY() {
+    const header = document.querySelector("header");
+    if (Math.round(scrollY) >= 60) {
+      header?.classList.add("sticked");
+    } else {
+      header?.classList.remove("sticked");
+    }
+  }
 
-  // document.addEventListener("astro:page-load", () => {
-  //   checkScrollY();
-  //   window.addEventListener("scroll", () => checkScrollY());
-  // });
+  document.addEventListener("astro:page-load", () => {
+    checkScrollY();
+    window.addEventListener("scroll", () => checkScrollY());
+  });
 </script>
