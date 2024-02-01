@@ -1,9 +1,19 @@
 ---
 import BookmarkItem from "src/components/BookmarkItem.astro";
 import HomeSection from "src/components/HomeSection.astro";
+import { GET } from "src/pages/api/bookmarks";
 import type { RaindropsResponse } from "src/types/raindrop";
 
-const bookmarks: RaindropsResponse = await fetch("http://localhost:4321/api/bookmarks").then((response) => response.json());
+/**
+  NOTE: Writing ResponseWithEncoding part is caused by Astro and this way is fix.
+  See: https://github.com/withastro/astro/issues/8514#issuecomment-1782947494
+  For correct usage that does not work by 01/02/2024, see: https://docs.astro.build/en/recipes/call-endpoints/
+*/
+let response = await GET({
+  ...Astro,
+  ResponseWithEncoding: Response,
+});
+const bookmarks = (await (response as Response).json()) as RaindropsResponse;
 const firstCol = bookmarks.items.filter((_, idx) => idx % 2 === 0);
 const secondCol = bookmarks.items.filter((_, idx) => idx % 2 === 1);
 ---

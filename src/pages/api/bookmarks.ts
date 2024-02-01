@@ -4,7 +4,7 @@ import getRaindropBookmarks from "src/utils/raindrop";
 
 export const prerender = false;
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async (ctx) => {
   const bookmarks = await getRaindropBookmarks({
     perPage: 10,
   });
