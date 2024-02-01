@@ -22,17 +22,17 @@ const { pathname } = Astro.props as {
 </header>
 
 <script>
-  function checkScrollY() {
-    const header = document.querySelector("header");
-    if (Math.round(scrollY) >= 60) {
-      header?.classList.add("sticked");
-    } else {
-      header?.classList.remove("sticked");
-    }
-  }
+  // function checkScrollY() {
+  //   const header = document.querySelector("header");
+  //   if (Math.round(scrollY) >= 60) {
+  //     header?.classList.add("sticked");
+  //   } else {
+  //     header?.classList.remove("sticked");
+  //   }
+  // }
 
-  document.addEventListener("astro:page-load", () => {
-    checkScrollY();
-    window.addEventListener("scroll", () => checkScrollY());
-  });
+  // document.addEventListener("astro:page-load", () => {
+  //   checkScrollY();
+  //   window.addEventListener("scroll", () => checkScrollY());
+  // });
 </script>
