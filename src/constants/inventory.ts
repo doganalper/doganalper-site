@@ -13,7 +13,7 @@ export const InventoryList: InventoryGroup[] = [
         link: "https://neovim.io/",
         name: "Neovim",
         description:
-          'Text editor for my development stuff and sometimes note taking. <a href="https://github.com/doganalper/dotfiles/tree/main/nvim" target="_blank" class="inventory-link">Here</a> is my config.',
+          'Text editor for my development stuff and sometimes note taking. <a href="https://github.com/doganalper/dotfiles/tree/main/nvim" target="_blank" rel="nofollow" class="inventory-link">Here</a> is my config.',
       },
       {
         link: "https://sw.kovidgoyal.net/kitty/",
@@ -24,7 +24,7 @@ export const InventoryList: InventoryGroup[] = [
         link: "https://github.com/tmux/tmux/wiki",
         name: "tmux",
         description:
-          'Terminal multiplexer for splitting things I work on. <a href="https://github.com/doganalper/dotfiles/tree/main/tmux" target="_blank" class="inventory-link">Here</a> is my config.',
+          'Terminal multiplexer for splitting things I work on. <a href="https://github.com/doganalper/dotfiles/tree/main/tmux" target="_blank" rel="nofollow" class="inventory-link">Here</a> is my config.',
       },
       {
         link: "https://flowapp.info/",
