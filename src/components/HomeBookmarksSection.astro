@@ -9,6 +9,8 @@ const bookmarks = await getRaindropBookmarks({
 
 const firstCol = bookmarks.items.filter((_, idx) => idx % 2 === 0);
 const secondCol = bookmarks.items.filter((_, idx) => idx % 2 === 1);
+
+export const prerender = false
 ---
 
 <HomeSection header="Latest Bookmarks">
