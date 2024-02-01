@@ -7,7 +7,7 @@ const { item } = Astro.props as {
 ---
 
 <li class="list-inside list-disc marker:text-gray-400">
-  <a href={item.link} class="inventory-link" target="_blank">
+  <a href={item.link} class="inventory-link" target="_blank" rel="nofollow">
     {item.name}:
   </a>
   <span set:html={item.description} />
