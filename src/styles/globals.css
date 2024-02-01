@@ -60,6 +60,10 @@ section.prose .astro-code {
     @apply text-gray-600 hover:text-black transition-colors duration-300;
   }
 
+  .inventory-link {
+    @apply text-blue-500 no-underline underline-offset-1 hover:underline hover:underline-offset-4 transition-all;
+  }
+
   .section-header {
     @apply text-2xl;
   }
