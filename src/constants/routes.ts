@@ -11,4 +11,9 @@ export default <IRouteItem[]>[
     text: "Blog",
     slug: "blog",
   },
+  {
+    href: "/inventory",
+    text: "Inventory",
+    slug: "inventory",
+  },
 ];

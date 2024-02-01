@@ -1,0 +1,13 @@
+---
+import type { InventoryGroup } from "src/types/inventory";
+import InventoryItem from "src/components/InventoryItem.astro";
+
+const { group } = Astro.props as {
+  group: InventoryGroup;
+};
+---
+
+<div class="space-y-0.5">
+  <h2 class="text-lg">{group.name}</h2>
+  {group.items.map((item) => <InventoryItem item={item} />)}
+</div>

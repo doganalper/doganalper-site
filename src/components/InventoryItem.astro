@@ -1,0 +1,14 @@
+---
+import type { InventoryItem } from "src/types/inventory";
+
+const { item } = Astro.props as {
+  item: InventoryItem;
+};
+---
+
+<li class="list-inside list-disc marker:text-gray-400">
+  <a href={item.link} class="inventory-link" target="_blank">
+    {item.name}:
+  </a>
+  <span set:html={item.description} />
+</li>

@@ -1,0 +1,12 @@
+---
+import MainLayout from "src/layouts/main.astro";
+import { InventoryList } from "src/constants/inventory";
+import InventoryGroup from "src/components/InventoryGroup.astro";
+---
+
+<MainLayout>
+  <section class="space-y-2.5">
+    <h1 class="text-xl">List of what I use daily</h1>
+    {InventoryList.map((group) => <InventoryGroup group={group} />)}
+  </section>
+</MainLayout>
