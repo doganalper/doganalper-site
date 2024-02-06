@@ -6,7 +6,7 @@ import InventoryGroup from "src/components/InventoryGroup.astro";
 export const prerender = true
 ---
 
-<MainLayout>
+<MainLayout title="Inventory" description="Things that I use on daily basis">
   <section class="space-y-2.5">
     <h1 class="text-xl">List of what I use daily</h1>
     {InventoryList.map((group) => <InventoryGroup group={group} />)}

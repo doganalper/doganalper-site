@@ -8,12 +8,14 @@ import "src/styles/globals.css";
 const { pathname, origin } = Astro.url;
 const url = `${origin}${pathname}`;
 
-const {
-  title = "Alper Doğan",
+let {
+  title,
   description = DESCRIPTION,
   imagePath,
   isArticle = false,
 } = Astro.props;
+
+title = title ? `${title} | Alper Doğan` : "Alper Doğan";
 ---
 
 <html lang="en">

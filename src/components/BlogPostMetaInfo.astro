@@ -2,10 +2,9 @@
 import type { CollectionEntry } from "astro:content";
 import formatDate from "src/utils/formatDate";
 
-const { entry, readingTime, place } = Astro.props as {
+const { entry, readingTime } = Astro.props as {
   entry: CollectionEntry<"blog">;
   readingTime?: string;
-  place: "left" | "right";
 };
 
 const publishDate = formatDate(entry.data.publishDate, {
@@ -32,8 +31,7 @@ const time = entry.data.publishDate.toISOString();
 ---
 
 <div
-  class="space-x-2.5 text-sm"
-  class:list={{ "md:text-right": place === "left" }}
+  class="space-x-1.5 text-sm"
 >
   <time datetime={time}>
     {publishDate}
