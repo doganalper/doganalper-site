@@ -11,7 +11,7 @@ export default defineConfig({
     tailwind(),
     mdx(),
     sitemap({
-      filter: (page) => !page.includes("og-image.png"),
+      filter: (page) => !page.includes(".png"),
     }),
   ],
   markdown: {
