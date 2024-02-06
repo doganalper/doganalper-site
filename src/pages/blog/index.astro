@@ -18,6 +18,6 @@ const blogEntries = await getCollection("blog").then(
 );
 ---
 
-<MainLayout title="Alper's Blog">
+<MainLayout title="Blog">
   {blogEntries.map((blog) => <BlogEntrySmall entry={blog} />)}
 </MainLayout>
