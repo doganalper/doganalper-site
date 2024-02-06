@@ -6,7 +6,9 @@ const DESCRIPTION = "Developer based in İstanbul, Türkiye";
 import "src/styles/globals.css";
 
 const { pathname, origin } = Astro.url;
-const url = `${origin}${pathname}`;
+let url = `${origin}${pathname}`;
+
+url = url.endsWith("/") ? url : `${url}/`
 
 let {
   title,
@@ -16,9 +18,10 @@ let {
 } = Astro.props;
 
 title = title ? `${title} | Alper Doğan` : "Alper Doğan";
+
 const metaImage = imagePath
   ? `${url}${imagePath}`
-  : `${url}default-meta-image.png`;
+  : `${origin}/default-meta-image.png`;
 ---
 
 <html lang="en">
