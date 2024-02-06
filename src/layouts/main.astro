@@ -16,6 +16,9 @@ let {
 } = Astro.props;
 
 title = title ? `${title} | Alper Doğan` : "Alper Doğan";
+const metaImage = imagePath
+  ? `${url}${imagePath}`
+  : `${url}default-meta-image.png`;
 ---
 
 <html lang="en">
@@ -35,22 +38,8 @@ title = title ? `${title} | Alper Doğan` : "Alper Doğan";
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={url} />
-    {
-      imagePath && (
-        <>
-          <meta
-            property="twitter:image"
-            content={`${url}${imagePath}`}
-            slot="og-tags"
-          />
-          <meta
-            property="og:image"
-            content={`${url}${imagePath}`}
-            slot="og-tags"
-          />
-        </>
-      )
-    }
+    <meta property="twitter:image" content={metaImage} slot="og-tags" />
+    <meta property="og:image" content={metaImage} slot="og-tags" />
     <meta name="robots" content="index, follow" />
     <meta
       name="keywords"
