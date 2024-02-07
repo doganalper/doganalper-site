@@ -6,6 +6,8 @@ import type { BlogEntry } from "src/types/blog";
 import isAfterToday from "src/utils/isAfterToday";
 import { isDev } from "src/utils/isDev";
 
+export const prerender = true
+
 const blogEntries = await getCollection("blog").then(
   (entry) =>
     entry
