@@ -1,0 +1,80 @@
+---
+title: What is Web Workers and how to use them?
+tag: development
+description: Briefly explaining what is web workers in Javascript and how to use them.
+publishDate: 2024-02-14
+language: en
+draft: true
+---
+
+JavaScript is single-threaded because it was designed to add interactivity to static web pages. Current state of JavaScript lets us do many things with it (even outside of browser) and it was not designed for this. Back in the day (1995) it couldn't run on server, on desktop applications and on mobile devices as applications, it worked only on browsers.
+
+Since JavaScript is single-threaded, when it faces a long running task it will block every other code execution that comes after that task until time taking task ends.
+
+Web workers lets us to create a new thread and run script without affecting main thread. But we already said that JavaScript is single-threaded, how can we create new threads? That single-thread refers to the *main thread* that does most of the work on browser. Main thread normally works fine with most of the things that you see on page but some heavy calculation, expensive operations may block overall experience of your user with blocking other scripts. Even though it is called single-threaded by default it lets us to use it as multi-threaded.
+
+### Limitations of a Web Worker
+
+While JavaScript code running on the main thread can access `window`  context, web workers cannot access to it directly. These are constraints of web workers:
+
+- They cannot directly access the DOM.
+- Since window is not accessable, their scope is `self`.
+- It has limited access to browser APIs, such as but not limited to `fetch`, `Permissions API`, `URL API`
+
+
+### Registering a Web Worker
+
+Web workers are created as seperate file and store related code there. By instantiating the Worker class we register a web worker. We need to pass where code located when doing this.
+
+Anything written (valid JavaScript) in pointed file will run in its own thread.
+
+```typescript
+const webWorker = new Worker("/js/example-web-worker.js");
+```
+
+### Talking With Window!
+
+We have stated before that threads cannot access `window` and cannot directly access DOM. But indirectly they can!
+
+Way of accessing DOM indirectly is by `message` event that lets main thread and worker threads to communicate each other. One example of this communication could be this; while expensive calculation is going on one worker thread, main thread is free for user interactivity and when this expensive calculation is finished it *sends* a message to main thread with result of that calculation and on **main thread** we listen to a `message` event and do something with that result (maybe write it to DOM).
+
+This transmission can only be happen between worker and script that runs this worker. This workers are called **dedicated workers**
+
+```typescript
+// /js/example-web-worker.js
+self.addEventListener("message", () => {
+    // ... some heavy calculations
+    const result = doVeryHeavyCalculations();
+
+    self.postMessage(result)
+})
+```
+
+```typescript
+// script.js
+const webWorker = new Worker("/js/example-web-worker.js");
+
+webWorker.addEventListener("message", ({data}) => {
+    // do something with passed data, maybe write it to DOM?
+})
+```
+
+### Terminating The Worker
+
+If by choice we might need to terminate running worker from the main thread we can call `terminate` method on that worker.
+
+```typescript
+// script.js
+const webWorker = new Worker("/js/example-web-worker.js");
+
+webWorker.terminate();
+```
+
+### Error Handling
+
+On any runtime error occur, `onerror` event handler will be called. This handler can receive a variable that implements `ErrorEvent` interface. It has:
+
+- `message` -> Meaningful error message.
+- `filename` -> Name of the script that error occurred.
+- `lineno` -> On which line error occured.
+
