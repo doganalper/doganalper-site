@@ -46,12 +46,20 @@ section.prose :where(p):not(:where([class~="not-prose"],[class~="not-prose"] *))
   @apply my-1 !important;
 }
 
-section.prose h3, section.prose p {
+section.prose :is(h3, p, ul) {
   @apply max-w-screen-xl mx-auto !important;
 }
 
 section.prose .astro-code {
   @apply max-w-screen-2xl mx-auto !important;
+}
+
+code {
+  @apply bg-gray-300/75 px-1 py-0.5 font-medium;
+}
+
+code::before, code::after {
+  @apply content-none !important;
 }
 
 @layer components {
