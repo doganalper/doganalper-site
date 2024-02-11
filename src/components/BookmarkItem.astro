@@ -16,6 +16,7 @@ const { bookmark } = Astro.props as {
 >
   <Image
     src={bookmark.cover}
+    format="webp"
     loading="lazy"
     decoding="async"
     alt={`${bookmark.title} (Bookmark)`}
