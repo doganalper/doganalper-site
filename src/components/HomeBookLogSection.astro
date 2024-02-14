@@ -5,14 +5,14 @@ import { bookLog } from "src/constants/book-log";
 
 <HomeSection header="Booklog">
   {
-    bookLog.slice(0, 5).map((log) => (
+    bookLog.slice(0, 5).map((log, idx) => (
       <a
         class="flex flex-col external-link"
         href={log.link}
         target="_blank"
         title={`${log.name} by ${log.author}`}
       >
-        {log.current && <span class="text-xs">Currently Reading</span>}
+        {idx === 0 && <span class="text-xs">Currently Reading</span>}
         <span>{log.name}</span>
         <span>by {log.author}</span>
       </a>
