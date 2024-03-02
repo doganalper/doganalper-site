@@ -1,5 +1,16 @@
 const Jobs = [
   {
+    company: "Kartaca",
+    role: "Frontend Developer",
+    href: "https://kartaca.com/en/",
+    roleSummary: [
+      "Implement software testing processes to ensure software quality",
+      "Analyze, develop, and, when necessary, redesign existing or new applications",
+    ],
+    stack: ["Typescript", "Tailwindcss", "Scss", "ReactJS", "NextJs"],
+    dates: ["02/2024"],
+  },
+  {
     company: "Akinon",
     role: "Frontend Developer",
     href: "https://akinon.com/",
@@ -8,7 +19,7 @@ const Jobs = [
       "Implementing design changes and creating new pages depending on customer's requests.",
     ],
     stack: ["Javascript", "Tailwindcss", "Scss", "Django Jinja"],
-    dates: ["10/2021", "12/2021"],
+    dates: ["10/2023", "12/2023"],
   },
   {
     company: "StoreSpy",
