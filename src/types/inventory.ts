@@ -8,4 +8,3 @@ export type InventoryGroup = {
   name: string;
   items: InventoryItem[];
 };
-

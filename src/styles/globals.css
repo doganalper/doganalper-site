@@ -46,7 +46,8 @@ section.prose :is(h1, h2, h3, h4, h5, h6) {
   @apply mt-[15px] mb-0 !important;
 }
 
-section.prose :where(p):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+section.prose
+  :where(p):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   @apply my-1 !important;
 }
 
@@ -54,7 +55,8 @@ code {
   @apply bg-gray-300/75 px-1 py-0.5 font-medium;
 }
 
-code::before, code::after {
+code::before,
+code::after {
   @apply content-none !important;
 }
 
@@ -78,4 +80,5 @@ code::before, code::after {
 
   .list-link h3 {
     @apply text-2xl font-semibold text-black;
-  } }
+  }
+}

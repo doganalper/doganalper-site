@@ -6,7 +6,10 @@ interface Props {
 const { route } = Astro.props as Props;
 const { pathname } = Astro.url;
 
-const isActive = route.slug === 'home' ? pathname === "/" : pathname.includes(`/${route.slug}`)
+const isActive =
+  route.slug === "home"
+    ? pathname === "/"
+    : pathname.includes(`/${route.slug}`);
 ---
 
 <li role="menuitem">

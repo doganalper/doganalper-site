@@ -8,11 +8,7 @@ import HeaderLink from "src/components/HeaderLink.astro";
 >
   <nav role="navigation">
     <ul role="menu" class="flex space-x-6 w-full">
-      {
-        Routes.map((route) => (
-          <HeaderLink route={route} />
-        ))
-      }
+      {Routes.map((route) => <HeaderLink route={route} />)}
     </ul>
   </nav>
 </header>

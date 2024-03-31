@@ -8,7 +8,7 @@ import "src/styles/globals.css";
 const { pathname, origin } = Astro.url;
 let url = `${origin}${pathname}`;
 
-url = url.endsWith("/") ? url : `${url}/`
+url = url.endsWith("/") ? url : `${url}/`;
 
 let {
   title,
