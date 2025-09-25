@@ -25,6 +25,7 @@ export default defineConfig({
   output: "server",
   adapter: vercel({
     analytics: true,
+    runtime: "nodejs22.x",
   }),
   site: "https://www.alperdogan.dev/",
 });
