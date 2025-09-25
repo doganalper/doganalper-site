@@ -1,11 +1,1 @@
-{
-  "functions": {
-    "src/pages/**/*.ts": {
-      "runtime": "nodejs22.x"
-    },
-    "src/pages/**/*.js": {
-      "runtime": "nodejs22.x"
-    }
-  },
-  "buildCommand": "npm run build"
-}
+{}
