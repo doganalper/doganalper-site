@@ -8,10 +8,10 @@ const { bookmark } = Astro.props as {
 };
 ---
 
-<a
-  href={bookmark.link}
-  target="_blank"
-  class="bg-white p-2.5 flex flex-col gap-2.5 text-lg external-link group border border-gray-300 rounded-md hover:border-gray-500"
+<button
+  data-bookmark-url={bookmark.link}
+  data-bookmark-title={bookmark.title}
+  class="bookmark-item bg-white p-2.5 flex flex-col gap-2.5 text-lg group border border-gray-300 rounded-md hover:border-gray-500 w-full text-left cursor-pointer transition-all duration-200 hover:shadow-md"
   title={bookmark.title}
 >
   <Image
@@ -35,4 +35,4 @@ const { bookmark } = Astro.props as {
       }
     </div>
   </div>
-</a>
+</button>

@@ -1,0 +1,263 @@
+---
+// Modal component for displaying bookmarks in an iframe
+---
+
+<style>
+  .modal-overlay {
+    transition: opacity 0.3s ease-out;
+  }
+  
+  .modal-content {
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-origin: center;
+  }
+  
+  .modal-entering {
+    opacity: 0;
+  }
+  
+  .modal-entering .modal-content {
+    transform: scale(0.1) rotate(5deg);
+    opacity: 0;
+  }
+  
+  .modal-visible {
+    opacity: 1;
+  }
+  
+  .modal-visible .modal-content {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  
+  .modal-exiting {
+    opacity: 0;
+  }
+  
+  .modal-exiting .modal-content {
+    transform: scale(0.9) rotate(-2deg);
+    opacity: 0;
+  }
+  
+  .bookmark-item {
+    transition: all 0.2s ease-out;
+  }
+  
+  .bookmark-item.expanding {
+    transform: scale(1.05);
+    z-index: 60;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  .bookmark-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+</style>
+
+<div id="bookmark-modal" class="modal-overlay fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-2 sm:p-4">
+  <div class="modal-content bg-white rounded-lg w-full max-w-6xl h-full max-h-[95vh] sm:max-h-[90vh] flex flex-col">
+    <!-- Modal header -->
+    <div class="flex items-center justify-between p-4 border-b border-gray-200">
+      <h3 id="modal-title" class="text-lg font-semibold text-gray-900 truncate"></h3>
+      <button 
+        id="close-modal" 
+        class="text-gray-400 hover:text-gray-600 text-2xl leading-none p-1"
+        aria-label="Close modal"
+      >
+        &times;
+      </button>
+    </div>
+    
+    <!-- Modal content -->
+    <div class="flex-1 relative">
+      <iframe 
+        id="modal-iframe" 
+        class="w-full h-full border-0" 
+        src=""
+        loading="lazy"
+      ></iframe>
+      
+      <!-- Loading indicator -->
+      <div id="modal-loading" class="absolute inset-0 flex items-center justify-center bg-gray-50">
+        <div class="flex items-center space-x-2">
+          <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-gray-600"></div>
+          <span class="text-gray-600">Loading...</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Modal footer -->
+    <div class="flex items-center justify-between p-4 border-t border-gray-200">
+      <span id="modal-url" class="text-sm text-gray-500 truncate max-w-md"></span>
+      <a 
+        id="open-original" 
+        href="" 
+        target="_blank" 
+        class="inline-flex items-center px-3 py-1.5 text-sm font-medium text-white bg-blue-600 rounded hover:bg-blue-700 transition-colors"
+      >
+        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+        </svg>
+        Open Original
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Modal functionality
+  const modal = document.getElementById('bookmark-modal');
+  const modalTitle = document.getElementById('modal-title');
+  const modalIframe = document.getElementById('modal-iframe') as HTMLIFrameElement;
+  const modalUrl = document.getElementById('modal-url');
+  const modalLoading = document.getElementById('modal-loading');
+  const openOriginal = document.getElementById('open-original') as HTMLAnchorElement;
+  const closeModalBtn = document.getElementById('close-modal');
+
+  // Function to open modal with animation
+  function openBookmarkModal(url: string, title: string, clickedElement?: HTMLElement) {
+    if (modal && modalTitle && modalIframe && modalUrl && modalLoading && openOriginal) {
+      modalTitle.textContent = title;
+      modalUrl.textContent = url;
+      openOriginal.href = url;
+      
+      // Add expanding animation to clicked element
+      if (clickedElement) {
+        clickedElement.classList.add('expanding');
+        
+        // Get the position of the clicked element to animate from there
+        const rect = clickedElement.getBoundingClientRect();
+        const modalContent = modal.querySelector('.modal-content') as HTMLElement;
+        
+        if (modalContent) {
+          // Calculate initial position and scale
+          const centerX = window.innerWidth / 2;
+          const centerY = window.innerHeight / 2;
+          const elementCenterX = rect.left + rect.width / 2;
+          const elementCenterY = rect.top + rect.height / 2;
+          
+          const translateX = elementCenterX - centerX;
+          const translateY = elementCenterY - centerY;
+          
+          // Set initial transform based on element position
+          modalContent.style.transform = `translate(${translateX}px, ${translateY}px) scale(0.1) rotate(5deg)`;
+          modalContent.style.opacity = '0';
+        }
+        
+        // Clean up element animation
+        setTimeout(() => {
+          clickedElement.classList.remove('expanding');
+        }, 300);
+      }
+      
+      // Show modal with entering animation
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      modalLoading.style.display = 'flex';
+      
+      // Start the animation sequence with a slight delay for smoothness
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const modalContent = modal.querySelector('.modal-content') as HTMLElement;
+          if (modalContent) {
+            modalContent.style.transform = 'translate(0, 0) scale(1) rotate(0deg)';
+            modalContent.style.opacity = '1';
+          }
+          modal.classList.add('modal-visible');
+        });
+      });
+      
+      // Load iframe
+      modalIframe.src = url;
+      
+      // Handle iframe load
+      modalIframe.onload = () => {
+        modalLoading.style.display = 'none';
+      };
+      
+      // Handle iframe error
+      modalIframe.onerror = () => {
+        modalLoading.innerHTML = `
+          <div class="text-center">
+            <div class="text-red-500 text-2xl mb-2">⚠️</div>
+            <p class="text-gray-600 mb-4">Unable to load this website in the modal.</p>
+            <a href="${url}" target="_blank" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded hover:bg-blue-700 transition-colors">
+              <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+              </svg>
+              Open in New Tab
+            </a>
+          </div>
+        `;
+      };
+    }
+  }
+
+  // Function to close modal with animation
+  function closeBookmarkModal() {
+    if (modal && modalIframe) {
+      // Start exit animation
+      modal.classList.remove('modal-visible');
+      modal.classList.add('modal-exiting');
+      
+      // Complete the close after animation
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex', 'modal-exiting');
+        modalIframe.src = '';
+        
+        // Reset modal state and styles for next opening
+        modal.classList.remove('modal-entering', 'modal-visible');
+        const modalContent = modal.querySelector('.modal-content') as HTMLElement;
+        if (modalContent) {
+          modalContent.style.transform = '';
+          modalContent.style.opacity = '';
+        }
+      }, 300);
+    }
+  }
+
+  // Event listeners
+  closeModalBtn?.addEventListener('click', closeBookmarkModal);
+  
+  // Close modal when clicking outside
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeBookmarkModal();
+    }
+  });
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+      closeBookmarkModal();
+    }
+  });
+
+  // Event delegation for bookmark items
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    const bookmarkItem = target.closest('.bookmark-item') as HTMLElement;
+    
+    if (bookmarkItem) {
+      e.preventDefault();
+      const url = bookmarkItem.getAttribute('data-bookmark-url');
+      const title = bookmarkItem.getAttribute('data-bookmark-title');
+      
+      if (url && title) {
+        openBookmarkModal(url, title, bookmarkItem);
+      }
+    }
+  });
+
+  // Make function available globally for potential direct calls
+  (window as any).openBookmarkModal = openBookmarkModal;
+</script>
