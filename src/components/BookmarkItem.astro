@@ -1,7 +1,5 @@
 ---
 import type { Bookmark } from "src/types/raindrop";
-import capitalizeString from "src/utils/capitalizeString";
-import { Image } from "astro:assets";
 
 const { bookmark } = Astro.props as {
   bookmark: Bookmark;
@@ -14,25 +12,5 @@ const { bookmark } = Astro.props as {
   class="bookmark-item bg-white p-2.5 flex flex-col gap-2.5 text-lg group border border-gray-300 rounded-md hover:border-gray-500 w-full text-left cursor-pointer transition-all duration-200 hover:shadow-md"
   title={bookmark.title}
 >
-  <Image
-    src={bookmark.cover}
-    loading="lazy"
-    decoding="async"
-    alt={`${bookmark.title} (Bookmark)`}
-    class="grayscale group-hover:grayscale-0 transition-filter duration-200 w-full rounded-md"
-    width="330"
-    height="170"
-  />
-  <div class="flex-grow">
-    <span class="line-clamp-3">{bookmark.title}</span>
-    <div class="flex flex-wrap gap-2 text-xs pt-2">
-      {
-        bookmark.tags.map((tag) => (
-          <div class="border border-gray-400 rounded-full py-0.5 px-2">
-            {capitalizeString(tag)}
-          </div>
-        ))
-      }
-    </div>
-  </div>
+  <span class="line-clamp-3">{bookmark.title}</span>
 </button>

@@ -11,7 +11,7 @@ dateStr += experience.dates[1] ?? "Present";
 ---
 
 <details
-  class="text-xl flex space-x-3"
+  class="text-xl flex flex-col"
   name="experiences"
   open={!experience.dates[1]}
 >
@@ -22,7 +22,7 @@ dateStr += experience.dates[1] ?? "Present";
       <LinkIcon href={experience.href} name={experience.company} />
     </h3>
   </summary>
-  <span class="pl-2 mt-2">
+  <span>
     <h4>{experience.role}</h4>
     {
       experience.companySummary && (
