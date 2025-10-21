@@ -1,0 +1,18 @@
+/* Tahoma font for Windows XP style */
+@font-face {
+  font-family: 'Tahoma';
+  src: url('https://db.onlinewebfonts.com/t/5a872c7ad14a3c0b4a7a3af1c9e3c4a0.woff2') format('woff2'),
+       url('https://db.onlinewebfonts.com/t/5a872c7ad14a3c0b4a7a3af1c9e3c4a0.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Microsoft Sans Serif';
+  src: url('https://db.onlinewebfonts.com/t/9c7d1e9e8a6f3ab3cdfdf83354e7aa23.woff2') format('woff2'),
+       url('https://db.onlinewebfonts.com/t/9c7d1e9e8a6f3ab3cdfdf83354e7aa23.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

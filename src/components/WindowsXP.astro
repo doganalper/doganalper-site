@@ -1,0 +1,202 @@
+---
+interface Props {
+  title: string;
+  icon?: string;
+  id?: string;
+}
+
+const {
+  title,
+  icon,
+  id = `xp-window-${Math.random().toString(36).substring(2, 9)}`,
+} = Astro.props;
+---
+
+<div class="xp-window" id={id}>
+  <div class="xp-title-bar">
+    <div class="xp-title-bar-text">
+      {icon && <img src={icon} alt="" width="16" height="16" />}
+      <span>{title}</span>
+    </div>
+    <div class="xp-window-controls">
+      <button class="xp-window-button minimize" aria-label="Minimize">
+        <svg
+          width="10"
+          height="1"
+          viewBox="0 0 10 1"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="10" height="1" fill="white"></rect>
+        </svg>
+      </button>
+      <button class="xp-window-button maximize" aria-label="Maximize">
+        <svg
+          width="10"
+          height="10"
+          viewBox="0 0 10 10"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            x="0"
+            y="0"
+            width="10"
+            height="10"
+            stroke="white"
+            stroke-width="1"
+            fill="none"></rect>
+        </svg>
+      </button>
+      <button class="xp-window-button close" aria-label="Close">
+        <svg
+          width="10"
+          height="10"
+          viewBox="0 0 10 10"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <line x1="0" y1="0" x2="10" y2="10" stroke="white" stroke-width="1"
+          ></line>
+          <line x1="10" y1="0" x2="0" y2="10" stroke="white" stroke-width="1"
+          ></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="xp-content">
+    <slot />
+  </div>
+</div>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const minimizeButtons = document.querySelectorAll(
+      ".xp-window-button.minimize",
+    );
+    const maximizeButtons = document.querySelectorAll(
+      ".xp-window-button.maximize",
+    );
+    const closeButtons = document.querySelectorAll(".xp-window-button.close");
+
+    // Create container for taskbar icons if it doesn't exist
+    let taskbar = document.getElementById("xp-taskbar");
+    if (!taskbar) {
+      taskbar = document.createElement("div");
+      taskbar.id = "xp-taskbar";
+      document.body.appendChild(taskbar);
+    }
+
+    minimizeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const window = button.closest(".xp-window");
+        const content = window?.querySelector(".xp-content");
+        if (content instanceof HTMLElement) {
+          content.style.display =
+            content.style.display === "none" ? "block" : "none";
+        }
+      });
+    });
+
+    maximizeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const window = button.closest(".xp-window");
+        if (window && window instanceof HTMLElement) {
+          const windowId = "window";
+          const isMaximized = window.classList.contains("xp-window-maximized");
+
+          // Toggle maximized state
+          window.classList.toggle("xp-window-maximized");
+
+          if (!isMaximized) {
+            // Save previous dimensions
+            window.dataset.prevWidth = window.style.width;
+            window.dataset.prevMaxWidth = window.style.maxWidth;
+
+            // Maximize
+            window.style.width = "100%";
+            window.style.maxWidth = "100%";
+
+            // Store state in sessionStorage
+            sessionStorage.setItem(`${windowId}-maximized`, "true");
+            sessionStorage.setItem(
+              `${windowId}-prevWidth`,
+              window.dataset.prevWidth || "",
+            );
+            sessionStorage.setItem(
+              `${windowId}-prevMaxWidth`,
+              window.dataset.prevMaxWidth || "",
+            );
+          } else {
+            // Restore dimensions
+            window.style.width = window.dataset.prevWidth || "";
+            window.style.maxWidth = window.dataset.prevMaxWidth || "";
+
+            // Clear maximized state in sessionStorage
+            sessionStorage.removeItem(`${windowId}-maximized`);
+          }
+        }
+      });
+    });
+
+    closeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const window = button.closest(".xp-window");
+        if (window instanceof HTMLElement) {
+          // Hide the window
+          window.style.display = "none";
+
+          // Create taskbar icon if it doesn't exist
+          const windowId = "window";
+          const windowTitle =
+            window.querySelector(".xp-title-bar-text span")?.textContent ||
+            "Window";
+          const windowIcon = window
+            .querySelector(".xp-title-bar-text img")
+            ?.getAttribute("src");
+
+          let taskbarIcon = document.getElementById(`taskbar-${windowId}`);
+          if (!taskbarIcon) {
+            taskbarIcon = document.createElement("button");
+            taskbarIcon.id = `taskbar-${windowId}`;
+            taskbarIcon.className = "xp-taskbar-icon";
+            taskbarIcon.setAttribute("aria-label", `Open ${windowTitle}`);
+
+            // Add icon and title
+            const iconContent = document.createElement("div");
+            iconContent.className = "xp-taskbar-icon-content";
+
+            if (windowIcon) {
+              const img = document.createElement("img");
+              img.src = windowIcon;
+              img.width = 16;
+              img.height = 16;
+              img.alt = "";
+              iconContent.appendChild(img);
+            }
+
+            const titleSpan = document.createElement("span");
+            titleSpan.textContent = windowTitle;
+            iconContent.appendChild(titleSpan);
+
+            taskbarIcon.appendChild(iconContent);
+
+            // Add click event
+            taskbarIcon.addEventListener("click", () => {
+              window.style.display = "block";
+              if (taskbarIcon) {
+                taskbarIcon.remove();
+              }
+            });
+
+            // Add to taskbar
+            const taskbarElement = document.getElementById("xp-taskbar");
+            if (taskbarElement) {
+              taskbarElement.appendChild(taskbarIcon);
+            }
+          }
+        }
+      });
+    });
+  });
+</script>

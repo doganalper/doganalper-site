@@ -2,13 +2,20 @@
 import MainLayout from "src/layouts/main.astro";
 import { InventoryList } from "src/constants/inventory";
 import InventoryGroup from "src/components/InventoryGroup.astro";
+import WindowsXP from "src/components/WindowsXP.astro";
+import Header from "src/components/Header.astro";
 
 export const prerender = true;
 ---
 
 <MainLayout title="Inventory" description="Things that I use on daily basis">
-  <section class="space-y-2.5">
-    <h1 class="text-xl">List of what I use daily</h1>
-    {InventoryList.map((group) => <InventoryGroup group={group} />)}
-  </section>
+  <WindowsXP title="Inventory">
+    <Header />
+    <div class="xp-content">
+      <section class="space-y-2.5">
+        <h1 class="text-xl">List of what I use daily</h1>
+        {InventoryList.map((group) => <InventoryGroup group={group} />)}
+      </section>
+    </div>
+  </WindowsXP>
 </MainLayout>

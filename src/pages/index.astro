@@ -4,17 +4,22 @@ import About from "src/components/About.astro";
 import Home from "src/components/Home.astro";
 import HomeBookmarksSection from "src/components/HomeBookmarksSection.astro";
 import HomeBookLogSection from "src/components/HomeBookLogSection.astro";
+import WindowsXP from "src/components/WindowsXP.astro";
+import Header from "src/components/Header.astro";
 ---
 
 <MainLayout>
-  <div class="space-y-6">
-    <div class="space-y-2">
-      <Home />
-      <About />
+  <WindowsXP title="Alper Doğan">
+    <Header />
+    <div class="xp-content space-y-6">
+      <div class="space-y-2">
+        <Home />
+        <About />
+      </div>
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+        <HomeBookmarksSection />
+        <HomeBookLogSection />
+      </div>
     </div>
-    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
-      <HomeBookmarksSection />
-      <HomeBookLogSection />
-    </div>
-  </div>
+  </WindowsXP>
 </MainLayout>

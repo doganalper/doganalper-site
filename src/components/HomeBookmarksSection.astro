@@ -1,6 +1,5 @@
 ---
 import BookmarkItem from "src/components/BookmarkItem.astro";
-import BookmarkModal from "src/components/BookmarkModal.astro";
 import HomeSection from "src/components/HomeSection.astro";
 import getRaindropBookmarks from "src/utils/raindrop";
 
@@ -22,5 +21,3 @@ const secondCol = bookmarks.items.filter((_, idx) => idx % 2 === 1);
     </div>
   </div>
 </HomeSection>
-
-<BookmarkModal />

@@ -5,6 +5,8 @@ import { getCollection } from "astro:content";
 import type { BlogEntry } from "src/types/blog";
 import isAfterToday from "src/utils/isAfterToday";
 import { isDev } from "src/utils/isDev";
+import WindowsXP from "src/components/WindowsXP.astro";
+import Header from "src/components/Header.astro";
 
 export const prerender = true;
 
@@ -21,5 +23,10 @@ const blogEntries = await getCollection("blog").then(
 ---
 
 <MainLayout title="Blog">
-  {blogEntries.map((blog) => <BlogEntrySmall entry={blog} />)}
+  <WindowsXP title="Blog">
+    <Header />
+    <div class="xp-content space-y-6">
+      {blogEntries.map((blog) => <BlogEntrySmall entry={blog} />)}
+    </div>
+  </WindowsXP>
 </MainLayout>

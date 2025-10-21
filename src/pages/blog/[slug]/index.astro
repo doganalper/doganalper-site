@@ -2,6 +2,8 @@
 import MainLayout from "src/layouts/main.astro";
 import BlogPostMetaInfo from "src/components/BlogPostMetaInfo.astro";
 import { getCollection, getEntry } from "astro:content";
+import WindowsXP from "src/components/WindowsXP.astro";
+import Header from "src/components/Header.astro";
 
 export const prerender = true;
 
@@ -35,19 +37,24 @@ const imagePath = `og-image.png`;
   imagePath={imagePath}
   isArticle
 >
-  <article class="space-y-5">
-    <header class="space-y-1.5 md:space-y-0.5 mx-auto max-w-screen-xl">
-      <h1 class="text-xl md:text-2xl text-black font-semibold">
-        {entry.data.title}
-      </h1>
-      <h2 class="text-md md:text-lg">{entry.data.description}</h2>
-      <BlogPostMetaInfo
-        entry={entry}
-        readingTime={remarkPluginFrontmatter.minutesRead}
-      />
-    </header>
-    <section class="prose leading-7 text-base tracking-wide max-w-none">
-      <Content />
-    </section>
-  </article>
+  <WindowsXP title={entry.data.title}>
+    <Header />
+    <div class="xp-content">
+      <article class="space-y-5">
+        <header class="space-y-1.5 md:space-y-0.5 mx-auto max-w-screen-xl">
+          <h1 class="text-xl md:text-2xl text-black font-semibold">
+            {entry.data.title}
+          </h1>
+          <h2 class="text-md md:text-lg">{entry.data.description}</h2>
+          <BlogPostMetaInfo
+            entry={entry}
+            readingTime={remarkPluginFrontmatter.minutesRead}
+          />
+        </header>
+        <section class="prose leading-7 text-base tracking-wide max-w-none">
+          <Content />
+        </section>
+      </article>
+    </div>
+  </WindowsXP>
 </MainLayout>

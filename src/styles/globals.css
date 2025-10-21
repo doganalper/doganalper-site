@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('/fonts/windows-xp/tahoma.css');
+
 @font-face {
   font-family: "Poppins";
   src: url("/fonts/Poppins-Regular.ttf") format("truetype");
@@ -10,8 +12,157 @@
   font-display: swap;
 }
 
+:root {
+  --xp-blue: #0055ea;
+  --xp-blue-light: #2b90ff;
+  --xp-blue-dark: #0a246a;
+  --xp-window-border: #dfdfdf;
+  --xp-window-shadow: rgba(0, 0, 0, 0.3);
+}
+
 * {
-  font-family: "Poppins";
+  font-family: "Tahoma", "Microsoft Sans Serif", "Poppins", sans-serif;
+}
+
+/* Windows XP Background */
+body.windows-xp {
+  background-color: #3b6ea5;
+  background-image: linear-gradient(to bottom, #7ba2e7, #3b6ea5);
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Windows XP Window */
+.xp-window {
+  background-color: #fff;
+  border: 1px solid var(--xp-window-border);
+  border-radius: 3px;
+  box-shadow: 1px 2px 8px var(--xp-window-shadow);
+  overflow: hidden;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* Windows XP Title Bar */
+.xp-title-bar {
+  background: linear-gradient(to right, var(--xp-blue-dark), var(--xp-blue), var(--xp-blue-light));
+  color: white;
+  padding: 5px 8px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  user-select: none;
+}
+
+.xp-title-bar-text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.xp-window-controls {
+  display: flex;
+  gap: 2px;
+}
+
+.xp-window-button {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.xp-window-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.xp-window-button.close:hover {
+  background-color: #ff5050;
+}
+
+/* Windows XP Content Area */
+.xp-content {
+  padding: 10px;
+  background-color: #fff;
+  overflow: auto;
+}
+
+/* Windows XP Button */
+.xp-button {
+  background: linear-gradient(to bottom, #f6f6f6, #e4e4e4);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 4px 10px;
+  font-size: 11px;
+  color: #000;
+  cursor: pointer;
+  box-shadow: 1px 1px 0 white inset, -1px -1px 0 #d8d8d8 inset;
+}
+
+.xp-button:hover {
+  background: linear-gradient(to bottom, #f8f8f8, #e8e8e8);
+}
+
+.xp-button:active {
+  background: linear-gradient(to bottom, #e4e4e4, #f6f6f6);
+  box-shadow: -1px -1px 0 white inset, 1px 1px 0 #d8d8d8 inset;
+}
+
+/* Windows XP Taskbar */
+#xp-taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to bottom, #2a6cd0, #3b7ae4);
+  border-top: 1px solid #0c59cf;
+  padding: 4px;
+  display: flex;
+  gap: 4px;
+  z-index: 1000;
+}
+
+.xp-taskbar-icon {
+  background: linear-gradient(to bottom, #3c7ae4, #3c7ae4);
+  border: 1px solid transparent;
+  border-radius: 2px;
+  padding: 2px 8px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  min-width: 120px;
+}
+
+.xp-taskbar-icon:hover {
+  background: linear-gradient(to bottom, #5c96e8, #3c7ae4);
+  border: 1px solid #7aaaea;
+}
+
+.xp-taskbar-icon:active {
+  background: linear-gradient(to bottom, #3c7ae4, #5c96e8);
+}
+
+.xp-taskbar-icon-content {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .astro-code {
