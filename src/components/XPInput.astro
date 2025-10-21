@@ -1,0 +1,36 @@
+---
+interface Props {
+  type?: string;
+  name: string;
+  placeholder?: string;
+  value?: string;
+  required?: boolean;
+  className?: string;
+}
+
+const { type = "text", name, placeholder, value, required = false, className = "" } = Astro.props;
+---
+
+<input
+  type={type}
+  name={name}
+  id={name}
+  placeholder={placeholder}
+  value={value}
+  required={required}
+  class={`xp-input ${className}`}
+/>
+
+<style>
+  .xp-input {
+    border: 1px solid #7f9db9;
+    padding: 2px 5px;
+    font-size: 11px;
+    background-color: white;
+    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.1);
+  }
+  
+  .xp-input:focus {
+    outline: 1px solid #3b79c7;
+  }
+</style>

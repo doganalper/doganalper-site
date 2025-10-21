@@ -30,7 +30,7 @@ const metaImage = imagePath
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta content="#18181B" name="theme-color" />
+    <meta content="#3b6ea5" name="theme-color" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@alperdogan" />
     <meta name="twitter:title" content={title} />
@@ -59,10 +59,7 @@ const metaImage = imagePath
       crossorigin
     />
   </head>
-  <body class="p-6 pt-0 bg-slate-100">
-    <Header />
-    <main class="space-y-5 mt-6">
-      <slot />
-    </main>
+  <body class="windows-xp">
+    <slot />
   </body>
 </html>

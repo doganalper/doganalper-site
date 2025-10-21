@@ -3,28 +3,20 @@ import Routes from "src/constants/routes";
 import HeaderLink from "src/components/HeaderLink.astro";
 ---
 
-<header
-  class="border-b -mx-6 px-6 py-4 sticky top-0 bg-inherit z-[2] transition-all duration-300"
->
+<div class="xp-window-menu">
   <nav role="navigation">
-    <ul role="menu" class="flex space-x-6 w-full">
+    <ul role="menu" class="flex space-x-2">
       {Routes.map((route) => <HeaderLink route={route} />)}
     </ul>
   </nav>
-</header>
+</div>
 
-<script>
-  function checkScrollY() {
-    const header = document.querySelector("header");
-    if (Math.round(scrollY) >= 60) {
-      header?.classList.add("sticked");
-    } else {
-      header?.classList.remove("sticked");
-    }
+<style>
+  .xp-window-menu {
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #dfdfdf;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
   }
-
-  document.addEventListener("astro:page-load", () => {
-    checkScrollY();
-    window.addEventListener("scroll", () => checkScrollY());
-  });
-</script>
+</style>

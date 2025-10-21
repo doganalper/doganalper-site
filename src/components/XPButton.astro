@@ -1,0 +1,23 @@
+---
+interface Props {
+  text: string;
+  href?: string;
+  type?: "button" | "submit" | "reset";
+  onClick?: string;
+  className?: string;
+}
+
+const { text, href, type = "button", onClick, className = "" } = Astro.props;
+---
+
+{
+  href ? (
+    <a href={href} class={`xp-button ${className}`}>
+      {text}
+    </a>
+  ) : (
+    <button type={type} onclick={onClick} class={`xp-button ${className}`}>
+      {text}
+    </button>
+  )
+}

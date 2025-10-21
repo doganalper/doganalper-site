@@ -16,10 +16,33 @@ const isActive =
   <a
     href={route.href}
     class:list={{
-      "text-black font-semibold underline underline-offset-2": isActive,
-      "text-zinc-600": !isActive,
+      "xp-menu-item xp-menu-item-active": isActive,
+      "xp-menu-item": !isActive,
     }}
   >
     {route.text}
   </a>
 </li>
+
+<style>
+  .xp-menu-item {
+    font-size: 11px;
+    padding: 2px 6px;
+    color: #000;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid transparent;
+  }
+  
+  .xp-menu-item:hover {
+    background-color: #e5f1fb;
+    border: 1px solid #b8d6fb;
+    border-radius: 2px;
+  }
+  
+  .xp-menu-item-active {
+    background-color: #cce8ff;
+    border: 1px solid #99d1ff;
+    border-radius: 2px;
+  }
+</style>

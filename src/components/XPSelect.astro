@@ -1,0 +1,39 @@
+---
+interface Option {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  name: string;
+  options: Option[];
+  defaultValue?: string;
+  required?: boolean;
+  className?: string;
+}
+
+const { name, options, defaultValue, required = false, className = "" } = Astro.props;
+---
+
+<select name={name} id={name} required={required} class={`xp-select ${className}`}>
+  {options.map((option) => (
+    <option value={option.value} selected={defaultValue === option.value}>
+      {option.label}
+    </option>
+  ))}
+</select>
+
+<style>
+  .xp-select {
+    border: 1px solid #7f9db9;
+    padding: 1px 3px;
+    font-size: 11px;
+    background-color: white;
+    background-image: linear-gradient(to bottom, #ffffff, #f0f0f0);
+    box-shadow: 1px 1px 0 white inset, -1px -1px 0 #d8d8d8 inset;
+  }
+  
+  .xp-select:focus {
+    outline: 1px solid #3b79c7;
+  }
+</style>
