@@ -16,7 +16,9 @@ const {
   <div class="xp-title-bar">
     <div class="xp-title-bar-text">
       {icon && <img src={icon} alt="" width="16" height="16" />}
-      <span>{title}</span>
+      <span class="xp-window-title">
+        {title}
+      </span>
     </div>
     <div class="xp-window-controls">
       <button class="xp-window-button minimize" aria-label="Minimize">
@@ -200,3 +202,70 @@ const {
     });
   });
 </script>
+
+<style>
+  .xp-title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .xp-title-bar-text {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    overflow: hidden;
+    flex: 1;
+    min-width: 0; /* Important for flex child with overflow hidden */
+  }
+  
+  .xp-window-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%; /* Use all available space */
+    display: inline-block;
+    vertical-align: bottom;
+  }
+  
+  .xp-window-controls {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    min-width: 60px;
+    justify-content: flex-end;
+    margin-left: 1.5rem;
+    flex-shrink: 0; /* Prevent controls from shrinking */
+  }
+  
+  .xp-window-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 16px;
+    min-height: 16px;
+    padding: 2px;
+  }
+  
+  @media (max-width: 640px) {
+    .xp-title-bar {
+      padding: 3px 5px;
+    }
+    
+    .xp-window-controls {
+      min-width: 55px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .xp-window-button {
+      min-width: 18px;
+      min-height: 18px;
+    }
+    
+    .xp-window-controls {
+      min-width: 50px;
+    }
+  }
+</style>
