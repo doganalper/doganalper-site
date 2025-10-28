@@ -22,7 +22,7 @@ dateStr += experience.dates[1] ?? "Present";
       <LinkIcon href={experience.href} name={experience.company} />
     </h3>
   </summary>
-  <span>
+  <div class="detail-content">
     <h4>{experience.role}</h4>
     {
       experience.companySummary && (
@@ -32,5 +32,5 @@ dateStr += experience.dates[1] ?? "Present";
     <ul class="list-disc pl-10 space-y-1 mt-2 text-base">
       {experience.roleSummary.map((sum) => <li> {sum} </li>)}
     </ul>
-  </span>
+  </div>
 </details>

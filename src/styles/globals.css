@@ -232,4 +232,9 @@ code::after {
   .list-link h3 {
     @apply text-2xl font-semibold text-black;
   }
+
+  .detail-content {
+    padding-left: 1.5rem;
+    padding-block: 0.5rem;
+  }
 }
