@@ -29,6 +29,44 @@ if (entry === undefined) {
 
 const { Content, remarkPluginFrontmatter } = await entry.render();
 const imagePath = `og-image.png`;
+
+const publishDateISO = entry.data.publishDate.toISOString();
+const authorName = "Alper Doğan";
+const authorUrl = "https://www.alperdogan.dev";
+const postUrl = `${Astro.url.origin}/blog/${entry.slug}`;
+const ogImageUrl = `${postUrl}/og-image.png`;
+
+// Map language to HTML lang and locale
+const languageMap: Record<string, { htmlLang: string; locale: string }> = {
+  en: { htmlLang: "en", locale: "en_US" },
+  tr: { htmlLang: "tr", locale: "tr_TR" },
+};
+const { htmlLang, locale } = languageMap[entry.data.language] || languageMap.en;
+
+// Create structured data
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: entry.data.title,
+  description: entry.data.description,
+  image: ogImageUrl,
+  datePublished: publishDateISO,
+  dateModified: publishDateISO,
+  author: {
+    "@type": "Person",
+    name: authorName,
+    url: authorUrl,
+  },
+  publisher: {
+    "@type": "Person",
+    name: authorName,
+    url: authorUrl,
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": postUrl,
+  },
+};
 ---
 
 <MainLayout
@@ -36,7 +74,13 @@ const imagePath = `og-image.png`;
   description={entry.data.description}
   imagePath={imagePath}
   isArticle
+  author={authorName}
+  publishedTime={publishDateISO}
+  tags={[entry.data.tag]}
+  htmlLang={htmlLang}
+  locale={locale}
 >
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   <WindowsXP title={entry.data.title}>
     <Header />
     <div class="xp-content">

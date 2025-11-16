@@ -6,9 +6,32 @@ import HomeBookmarksSection from "src/components/HomeBookmarksSection.astro";
 import HomeBookLogSection from "src/components/HomeBookLogSection.astro";
 import WindowsXP from "src/components/WindowsXP.astro";
 import Header from "src/components/Header.astro";
+import SOCIAL_PLATFORMS from "src/constants/social";
+
+const authorName = "Alper Doğan";
+const authorUrl = "https://www.alperdogan.dev";
+
+const socialProfiles = SOCIAL_PLATFORMS.filter(
+  (platform) => !platform.href.startsWith("mailto:")
+).map((platform) => platform.href);
+
+const personStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: authorName,
+  url: authorUrl,
+  sameAs: socialProfiles,
+  jobTitle: "Developer",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "İstanbul",
+    addressCountry: "TR",
+  },
+};
 ---
 
 <MainLayout>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(personStructuredData)} />
   <WindowsXP title="Alper Doğan">
     <Header />
     <div class="xp-content space-y-6">

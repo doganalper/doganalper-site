@@ -9,6 +9,7 @@ const { href, text, isOuterLink } = Astro.props as {
 <a
   href={href}
   target={isOuterLink ? "_blank" : "_self"}
+  rel={isOuterLink ? "noopener noreferrer" : undefined}
   class="underline underline-offset-1 hover:text-black"
 >
   {text}

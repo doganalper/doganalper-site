@@ -13,6 +13,8 @@ export async function get(context) {
       pubDate: post.data.publishDate,
       description: post.data.description,
       link: `/blog/${post.slug}`,
+      author: "Alper Doğan",
+      categories: [post.data.tag],
       customData: `<language>${post.data.language || "en"}</language>`,
     })),
   });
